@@ -122,6 +122,22 @@
 
         <figure class="compare" data-reveal style="--i:2">
           <figcaption class="compare-caption" data-i18n="manifesto.example">Ejemplo: un correo a un cliente para avisar de un pedido con retraso</figcaption>
+
+          <!-- Demostración: se escribe el prompt del vídeo 1.1 y aparece el correo. Textos en i18n.js (demo.*) -->
+          <div class="demo" data-demo>
+            <p class="sr-only" data-demo-sr></p>
+            <div class="demo-msg demo-msg-user" aria-hidden="true">
+              <span class="demo-who" data-i18n="demo.you">Tú</span>
+              <p class="demo-prompt">
+                <span class="demo-ghost" data-demo-ghost></span>
+                <span class="demo-typed"><span data-demo-typed></span><span class="demo-caret"></span></span>
+              </p>
+            </div>
+            <div class="demo-msg demo-msg-ai" aria-hidden="true">
+              <span class="demo-who demo-who-ai">IA</span>
+              <div class="demo-answer" data-demo-answer></div>
+            </div>
+          </div>
           <div class="compare-row">
             <div class="compare-item">
               <span class="compare-label" data-i18n="manifesto.before">Sin IA</span>

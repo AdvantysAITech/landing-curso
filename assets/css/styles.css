@@ -121,6 +121,18 @@ button, [role="tab"], .btn, .lang-btn {
 }
 .skip-link:focus { top: 12px; }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------- Tipografía común ---------- */
 .eyebrow {
   display: inline-flex;
@@ -495,6 +507,85 @@ button, [role="tab"], .btn, .lang-btn {
 .compare-arrow svg { width: 22px; height: 22px; }
 .compare-note { margin-top: 14px; font-size: 0.8125rem; color: var(--muted); }
 
+/* Demostración prompt -> correo */
+.demo {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+  text-align: left;
+}
+.demo-msg {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+.demo-msg-user { background: var(--tint-2); }
+.demo-who {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.demo-who-ai { background: var(--brand-gradient); color: #fff; box-shadow: none; }
+
+/* El texto fantasma reserva el alto final: no hay saltos de maquetación */
+.demo-prompt { display: grid; padding-top: 5px; color: var(--ink); }
+.demo-ghost, .demo-typed { grid-area: 1 / 1; }
+.demo-ghost { visibility: hidden; }
+.demo-caret {
+  display: none;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 1px;
+  vertical-align: -0.15em;
+  background: var(--accent);
+}
+.demo.is-typing .demo-caret { display: inline-block; animation: caret 900ms steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+
+.demo-answer { display: grid; gap: 6px; padding-top: 5px; color: var(--ink-2); }
+.demo-answer strong { color: var(--ink); font-weight: 600; }
+.demo-line {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
+  transition-delay: calc(var(--r, 0) * 80ms);
+}
+.demo.is-answered .demo-line { opacity: 1; transform: none; }
+.demo-thinking {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  height: 22px;
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.demo-thinking span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: think 900ms var(--ease-in-out) infinite;
+}
+.demo-thinking span:nth-child(2) { animation-delay: 150ms; }
+.demo-thinking span:nth-child(3) { animation-delay: 300ms; }
+@keyframes think { 0%, 100% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+.demo.is-thinking .demo-thinking { opacity: 1; }
+.demo-answer > .demo-line:first-of-type { grid-area: 1 / 1; }
+
 /* ---------- Temario ---------- */
 .program { padding-block: var(--section-y); background: var(--tint); }
 .section-head { max-width: 720px; }
@@ -563,6 +654,14 @@ button, [role="tab"], .btn, .lang-btn {
 .program-panel:focus-visible { outline-offset: 4px; }
 .panel-anim { transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
 .panel-anim.is-leaving { opacity: 0; transform: translateY(6px); }
+.panel-anim.is-staggered .panel-list li {
+  animation: row-in 220ms var(--ease-out) both;
+  animation-delay: calc(var(--r, 0) * 40ms + 60ms);
+}
+@keyframes row-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
 
 .panel-kicker { font-size: 0.8125rem; font-weight: 600; color: var(--accent); }
 .panel-title {
@@ -987,9 +1086,18 @@ button, [role="tab"], .btn, .lang-btn {
   color: #fff;
 }
 .success-icon svg { width: 30px; height: 30px; }
-.form-success:not([hidden]) { animation: success-in 500ms var(--ease-out) both; }
+.form-success:not([hidden]) > * { animation: success-in 450ms var(--ease-out) both; }
+.form-success:not([hidden]) > h3 { animation-delay: 80ms; }
+.form-success:not([hidden]) > p { animation-delay: 160ms; }
+.form-success:not([hidden]) > .success-icon {
+  animation: success-pop 450ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
 @keyframes success-in {
-  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes success-pop {
+  from { opacity: 0; transform: scale(0.6); }
   to { opacity: 1; transform: none; }
 }
 
@@ -1021,6 +1129,10 @@ button, [role="tab"], .btn, .lang-btn {
    Solo transform y opacity. Todo depende de .js y de la preferencia del usuario.
    ========================================================================== */
 
+/* Cambio de idioma: fundido breve del contenido */
+main { transition: opacity 180ms var(--ease-out); }
+main.is-switching { opacity: 0.4; transition-duration: 120ms; }
+
 /* Entrada de la portada al cargar */
 .js .load-in {
   animation: load-in 800ms var(--ease-out) both;
@@ -1046,7 +1158,12 @@ button, [role="tab"], .btn, .lang-btn {
   .js [data-reveal] { transform: none; transition: opacity 300ms ease; transition-delay: 0ms; }
   .panel-anim.is-leaving { transform: none; }
   .faq-a, .faq-a p, .faq-icon, .lang-indicator { transition-duration: 0ms; }
-  .form-success:not([hidden]) { animation: fade 300ms ease both; }
+  .form-success:not([hidden]) > *,
+  .form-success:not([hidden]) > .success-icon { animation: fade 200ms ease both; animation-delay: 0ms; }
+  .panel-anim.is-staggered .panel-list li { animation: none; }
+  .demo-line { transform: none; transition: opacity 200ms ease; transition-delay: 0ms; }
+  .demo-thinking span { animation: none; }
+  main, main.is-switching { transition-duration: 0ms; }
   .btn.is-loading .icon-spin { animation-duration: 1600ms; }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 }

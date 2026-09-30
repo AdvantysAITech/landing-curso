@@ -30,6 +30,17 @@ window.I18N = {
     "manifesto.after": "Con IA",
     "manifesto.note": "Tiempos orientativos del ejemplo del vídeo 1.1.",
 
+    "demo.you": "Tú",
+    "demo.prompt": "Escribe un correo a un cliente para decirle que su pedido llegará con 3 días de retraso por un problema con el proveedor. Tono cercano y profesional. Ofrécele un 5 % de descuento en su próxima compra.",
+    "demo.answer": [
+      "<strong>Asunto:</strong> Tu pedido llegará con 3 días de retraso",
+      "Hola, [nombre]:",
+      "Queremos avisarte de que tu pedido llegará 3 días más tarde de lo previsto por un problema con nuestro proveedor. Sentimos las molestias.",
+      "Como disculpa, te ofrecemos un 5 % de descuento en tu próxima compra.",
+      "Un saludo, [tu nombre]"
+    ],
+    "demo.sr": "Demostración: se pide a la IA un correo para avisar a un cliente de un retraso y la IA lo redacta.",
+
     "program.eyebrow": "Temario",
     "program.title": "21 vídeos en 4 bloques",
     "program.sub": "Cada vídeo dura unos 10 minutos: un problema real, la solución en pantalla y un reto para aplicarlo en tu trabajo.",
@@ -206,6 +217,17 @@ window.I18N = {
     "manifesto.before": "Sense IA",
     "manifesto.after": "Amb IA",
     "manifesto.note": "Temps orientatius de l'exemple del vídeo 1.1.",
+
+    "demo.you": "Tu",
+    "demo.prompt": "Escriu un correu a un client per dir-li que la seva comanda arribarà amb 3 dies de retard per un problema amb el proveïdor. To proper i professional. Ofereix-li un 5 % de descompte en la seva propera compra.",
+    "demo.answer": [
+      "<strong>Assumpte:</strong> La teva comanda arribarà amb 3 dies de retard",
+      "Hola, [nom]:",
+      "Volem avisar-te que la teva comanda arribarà 3 dies més tard del previst per un problema amb el nostre proveïdor. Lamentem les molèsties.",
+      "Com a disculpa, t'oferim un 5 % de descompte en la teva propera compra.",
+      "Salutacions, [el teu nom]"
+    ],
+    "demo.sr": "Demostració: es demana a la IA un correu per avisar un client d'un retard i la IA el redacta.",
 
     "program.eyebrow": "Temari",
     "program.title": "21 vídeos en 4 blocs",

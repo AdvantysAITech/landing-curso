@@ -76,6 +76,7 @@
     renderProgram(false);
     renderFaq();
     refreshSuccess();
+    renderDemo();
 
     if (!opts || !opts.initial) {
       storageSet("curso-ia-lang", lang);
@@ -86,10 +87,21 @@
     }
   }
 
+  var mainEl = document.querySelector("main");
+  var switchTimer = null;
+
   document.querySelectorAll(".lang-btn").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var lang = btn.getAttribute("data-lang");
-      if (lang !== state.lang) applyLang(lang);
+      if (lang === state.lang) return;
+      if (reduceMotion.matches || !mainEl) { applyLang(lang); return; }
+      // Fundido breve: baja la opacidad, cambia los textos y vuelve
+      window.clearTimeout(switchTimer);
+      mainEl.classList.add("is-switching");
+      switchTimer = window.setTimeout(function () {
+        applyLang(lang);
+        mainEl.classList.remove("is-switching");
+      }, 120);
     });
   });
 
@@ -129,7 +141,7 @@
       '<ol class="panel-list">' +
       b.videos.map(function (v, i) {
         return (
-          "<li>" +
+          '<li style="--r:' + i + '">' +
           '<span class="v-num">' + n + "." + (i + 1) + "</span>" +
           '<span class="v-title">' + esc(v) + "</span>" +
           '<span class="v-time"><svg aria-hidden="true"><use href="#i-clock"/></svg>10 min</span>' +
@@ -156,7 +168,7 @@
     window.setTimeout(function () {
       panelEl.innerHTML = panelHtml();
       var next = panelEl.querySelector(".panel-anim");
-      next.classList.add("is-leaving");
+      next.classList.add("is-leaving", "is-staggered");
       requestAnimationFrame(function () {
         requestAnimationFrame(function () { next.classList.remove("is-leaving"); });
       });
@@ -376,6 +388,88 @@
     });
   }
 
+  /* ---------------- Demostración: prompt -> correo ----------------
+     Se reproduce una sola vez, cuando el bloque entra en pantalla.
+     Con animaciones reducidas (o tras un cambio de idioma) se muestra terminada. */
+  var demo = document.querySelector("[data-demo]");
+  var demoState = "idle"; // idle | running | done
+  var demoTimers = [];
+  var TYPE_MS = 16;          // milisegundos por carácter
+  var THINK_MS = 650;        // pausa de "la IA está escribiendo"
+
+  function demoClearTimers() {
+    demoTimers.forEach(function (id) { window.clearTimeout(id); });
+    demoTimers = [];
+  }
+
+  function renderDemo() {
+    if (!demo) return;
+    var prompt = t("demo.prompt");
+    var lines = t("demo.answer") || [];
+    demo.querySelector("[data-demo-sr]").textContent = t("demo.sr");
+    demo.querySelector("[data-demo-ghost]").textContent = prompt;
+    demo.querySelector("[data-demo-answer]").innerHTML =
+      '<div class="demo-thinking"><span></span><span></span><span></span></div>' +
+      lines.map(function (l, i) { return '<p class="demo-line" style="--r:' + i + '">' + l + "</p>"; }).join("");
+
+    // Si ya se estaba reproduciendo o había terminado, se muestra completa en el nuevo idioma
+    if (demoState !== "idle") {
+      demoClearTimers();
+      demoState = "done";
+      demoFinal();
+    } else {
+      demo.querySelector("[data-demo-typed]").textContent = "";
+    }
+  }
+
+  function demoFinal() {
+    demo.querySelector("[data-demo-typed]").textContent = t("demo.prompt");
+    demo.classList.remove("is-typing", "is-thinking");
+    demo.classList.add("is-answered");
+  }
+
+  function playDemo() {
+    if (!demo || demoState !== "idle") return;
+    if (reduceMotion.matches) { demoState = "done"; demoFinal(); return; }
+    demoState = "running";
+    var prompt = t("demo.prompt");
+    var typed = demo.querySelector("[data-demo-typed]");
+    var i = 0;
+    demo.classList.add("is-typing");
+
+    (function type() {
+      i += 1;
+      typed.textContent = prompt.slice(0, i);
+      if (i < prompt.length) {
+        demoTimers.push(window.setTimeout(type, TYPE_MS));
+      } else {
+        demo.classList.remove("is-typing");
+        demo.classList.add("is-thinking");
+        demoTimers.push(window.setTimeout(function () {
+          demo.classList.remove("is-thinking");
+          demo.classList.add("is-answered");
+          demoState = "done";
+        }, THINK_MS));
+      }
+    })();
+  }
+
+  if (demo) {
+    if ("IntersectionObserver" in window) {
+      var demoIo = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          demoIo.disconnect();
+          // Pequeña espera para que termine la aparición del bloque
+          demoTimers.push(window.setTimeout(playDemo, 350));
+        }
+      }, { threshold: 0.6 });
+      demoIo.observe(demo);
+    } else {
+      demoState = "done";
+    }
+  }
+
   /* ---------------- Inicio ---------------- */
   applyLang(detectLang(), { initial: true });
+  if (demo && !("IntersectionObserver" in window)) demoFinal();
 })();
