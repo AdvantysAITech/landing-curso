@@ -7,12 +7,13 @@
 
   /* ------------------------------------------------------------------
      CONFIGURACIÓN
-     endpoint: URL del webhook de entrada del Sistema Advantys que recibe
-     las inscripciones (POST, JSON). Mientras esté vacío, el formulario
-     funciona en modo demostración: simula el envío y muestra el éxito.
+     endpoint: función de Vercel (api/inscripcion.js) que reenvía la
+     inscripción al Sistema Advantys. La URL del webhook va en la variable
+     de entorno INSCRIPCION_WEBHOOK_URL de Vercel, nunca en este archivo.
+     En local (Live Server) el envío se simula y se ve en la consola.
   ------------------------------------------------------------------ */
   var CONFIG = {
-    endpoint: "",
+    endpoint: "/api/inscripcion",
     origen: "landing-curso-ia-ccandorra",
     idiomaPorDefecto: "es"
   };
@@ -373,7 +374,9 @@
   }
 
   function send(payload) {
-    if (!CONFIG.endpoint) {
+    // En local (Live Server) no existe /api: se simula el envío
+    var isLocal = /^(localhost|127\.0\.0\.1|0\.0\.0\.0)$/.test(location.hostname) || location.protocol === "file:";
+    if (!CONFIG.endpoint || isLocal) {
       // Modo demostración
       console.info("[Curso IA] Modo demostración. Datos que se enviarían:", payload);
       return new Promise(function (resolve) { window.setTimeout(resolve, 900); });
