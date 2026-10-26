@@ -29,6 +29,12 @@ const IDIOMA = { ca: "Catalán", es: "Castellano" };
 // Mientras solo exista la versión en catalán, todas las inscripciones reciben ese curso
 const CURSO_DISPONIBLE = "ca";
 
+// Orígenes que puede declarar la web. Cualquier otro valor se ignora.
+const ORIGENES = {
+  libro: { origen: "libro-vende-mas-y-trabaja-menos", tag: "origen-libro" }
+};
+const ORIGEN_POR_DEFECTO = { origen: "landing-curso-ia-ccandorra", tag: "origen-landing-curso" };
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function clean(v, max) {
@@ -78,11 +84,13 @@ module.exports = async function handler(req, res) {
     return res.status(422).json({ ok: false, error: "invalid" });
   }
 
+  const procedencia = ORIGENES[clean(body.origen, 40).toLowerCase()] || ORIGEN_POR_DEFECTO;
+
   const name = splitName(nombre);
   const hoy = new Date().toISOString().slice(0, 10);
   const novedades = body.acepta_novedades === true;
 
-  const tags = ["curso-ia-inscrito", "curso-ia-" + CURSO_DISPONIBLE, "origen-landing-curso"];
+  const tags = ["curso-ia-inscrito", "curso-ia-" + CURSO_DISPONIBLE, procedencia.tag];
   if (novedades) tags.push("curso-ia-novedades");
 
   const payload = {
@@ -99,7 +107,7 @@ module.exports = async function handler(req, res) {
     acepta_novedades: novedades ? "Sí" : "No",
     tags: tags.join(","),
     idioma_web: clean(body.idioma_web, 5),
-    origen: "landing-curso-ia-ccandorra"
+    origen: procedencia.origen
   };
 
   try {
