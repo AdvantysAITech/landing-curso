@@ -29,3 +29,6 @@ El formulario envía a `/api/inscripcion` (archivo `api/inscripcion.js`), que re
 
 ## Idioma
 Selector ES/CA en la cabecera. También por enlace: `?lang=ca`.
+
+## Origen de la visita
+Los enlaces con `?origen=libro` (QR del libro «Vende más y trabaja menos») marcan la inscripción con la etiqueta `origen-libro` y el origen `libro-vende-mas-y-trabaja-menos`. El origen se recuerda durante la sesión. Los orígenes admitidos están en `CONFIG.origenesPorEnlace` (`main.js`) y en `ORIGENES` (`api/inscripcion.js`); cualquier otro valor se ignora.

@@ -15,6 +15,8 @@
   var CONFIG = {
     endpoint: "/api/inscripcion",
     origen: "landing-curso-ia-ccandorra",
+    // Orígenes admitidos por enlace (?origen=...). Ej.: los QR del libro llegan con ?origen=libro
+    origenesPorEnlace: ["libro"],
     idiomaPorDefecto: "es"
   };
 
@@ -30,6 +32,25 @@
 
   function storageGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
   function storageSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* sin almacenamiento */ } }
+
+  /* ---------------- Origen de la visita ----------------
+     Si la visita llega con ?origen=libro (u otro admitido), se recuerda durante
+     la sesión para que la inscripción quede marcada aunque se navegue por anclas. */
+  function detectOrigen() {
+    var param = (new URLSearchParams(window.location.search).get("origen") || "").toLowerCase();
+    try {
+      if (CONFIG.origenesPorEnlace.indexOf(param) > -1) {
+        window.sessionStorage.setItem("curso-ia-origen", param);
+        return param;
+      }
+      var saved = window.sessionStorage.getItem("curso-ia-origen");
+      if (CONFIG.origenesPorEnlace.indexOf(saved) > -1) return saved;
+    } catch (e) {
+      if (CONFIG.origenesPorEnlace.indexOf(param) > -1) return param;
+    }
+    return CONFIG.origen;
+  }
+  var origenVisita = detectOrigen();
 
   /* ---------------- Idioma ---------------- */
   function detectLang() {
@@ -348,7 +369,7 @@
         acepta_privacidad: true,
         acepta_novedades: fd.get("acepta_novedades") === "on",
         idioma_web: state.lang,
-        origen: CONFIG.origen,
+        origen: origenVisita,
         fecha: new Date().toISOString()
       };
 
