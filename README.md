@@ -10,18 +10,23 @@ Web estática (HTML, CSS y JS sin dependencias). Ábrela con Live Server en VS C
 - `assets/fonts/` · Poppins autoalojada · `assets/img/` · logos, favicon e iconos de herramientas
 - `vercel.json` y `robots.txt` · la página no se indexa (es interna)
 
-## Pendiente de completar
-| Qué | Dónde | Tamaño |
-| --- | --- | --- |
-| Fotograma del tráiler | `index.html`, comentario «HUECO» de la portada | 1600 × 900 px |
-| Logo Cambra de Comerç | `index.html`, sección organizadores | SVG, 40 px de alto |
-| Foto de Alex grabando | `index.html`, «Cómo funciona» | 1200 × 800 px |
-| Foto de Alex | `index.html`, «Quién te acompaña» | 800 × 1000 px |
-| Imagen para redes | `assets/img/og-image.jpg` | 1200 × 630 px |
-| URL del webhook de inscripciones | Vercel → Settings → Environment Variables → `INSCRIPCION_WEBHOOK_URL` | · |
-| Enlaces legales | pie de página y casilla de privacidad | · |
+## Vídeo de presentación (portada)
+- El vídeo va en `assets/video/intro-curso.mp4` (MP4 H.264, 16:9, idealmente menos de 15 MB).
+- La imagen que se ve antes de darle al play es `assets/img/hero-poster.jpg` (1600 × 900 px).
+- Mientras el archivo de vídeo no exista, el botón de play no aparece: la portada muestra solo la imagen.
 
-Cada hueco tiene un comentario en el HTML con la etiqueta `<img>` exacta que hay que pegar.
+## Imágenes
+- `assets/img/alex-ruiz.jpg` · foto de Alex con fondo oscuro y luz de marca (1000 × 1250 px)
+- `assets/img/hero-poster.jpg` · portada del vídeo
+- `assets/img/og-image.jpg` · imagen para compartir en redes (1200 × 630 px)
+
+## Pendiente de completar
+| Qué | Dónde |
+| --- | --- |
+| Vídeo de presentación de Alex | `assets/video/intro-curso.mp4` |
+| URL del webhook de inscripciones | Vercel → Settings → Environment Variables → `INSCRIPCION_WEBHOOK_URL` |
+| NRT de Advantys Ai | `aviso-legal.html` y `privacidad.html` |
+
 El formulario envía a `/api/inscripcion` (archivo `api/inscripcion.js`), que reenvía los datos al webhook guardado en `INSCRIPCION_WEBHOOK_URL`. En local (Live Server) el envío se simula y se ve en la consola.
 
 ## Datos que envía el formulario (POST JSON)

@@ -228,7 +228,7 @@
 
   /* ---------------- Preguntas frecuentes ---------------- */
   var faqEl = document.querySelector("[data-faq]");
-  var FAQ_COUNT = 7;
+  var FAQ_COUNT = 8;
 
   function renderFaq() {
     if (!faqEl) return;
@@ -490,6 +490,36 @@
       demoIo.observe(demo);
     } else {
       demoState = "done";
+    }
+  }
+
+  /* ---------------- Vídeo de presentación ---------------- */
+  // El botón de play solo aparece si existe el archivo de vídeo.
+  var player = document.querySelector("[data-player]");
+  if (player) {
+    var pVideo = player.querySelector("[data-player-video]");
+    var pPlay = player.querySelector("[data-player-play]");
+    var pSource = pVideo && pVideo.querySelector("source");
+    var pSrc = pSource && pSource.getAttribute("src");
+    if (pVideo && pPlay && pSrc && window.fetch) {
+      fetch(pSrc, { method: "HEAD" }).then(function (r) {
+        var type = (r.headers.get("content-type") || "").toLowerCase();
+        if (r.ok && type.indexOf("video") > -1) pPlay.hidden = false;
+      }).catch(function () {});
+
+      pPlay.addEventListener("click", function () {
+        player.classList.add("is-playing");
+        pPlay.hidden = true;
+        pVideo.controls = true;
+        var pr = pVideo.play();
+        if (pr && pr.catch) pr.catch(function () {});
+      });
+      pVideo.addEventListener("ended", function () {
+        player.classList.remove("is-playing");
+        pVideo.controls = false;
+        pVideo.load();
+        pPlay.hidden = false;
+      });
     }
   }
 

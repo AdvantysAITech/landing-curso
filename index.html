@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Curso oficial de IA | Cámara de Comercio de Andorra y Advantys Ai</title>
-  <meta name="description" content="Curso gratuito para aprender a usar la inteligencia artificial en tu trabajo. 21 vídeos prácticos, en castellano y catalán, con certificado.">
+  <title>Curso oficial de IA | Advantys Ai</title>
+  <meta name="description" content="Curso gratuito para aprender a usar la inteligencia artificial en tu trabajo. Valorado en 250 € y subvencionado por Advantys Ai. 21 vídeos prácticos, en castellano y catalán, con certificado.">
   <!-- Landing interna de muestra: no indexar -->
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#ffffff">
@@ -13,8 +13,9 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Curso oficial de IA">
   <meta property="og:description" content="Aprende a usar la IA en tu trabajo. Gratuito, en castellano y catalán, con certificado.">
-  <!-- HUECO: imagen para compartir en redes (1200 × 630 px) en assets/img/og-image.jpg -->
-  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta property="og:image" content="https://ccandorra.advantys.ai/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/img/favicon-180.png">
@@ -62,7 +63,12 @@
           <p class="eyebrow load-in" style="--i:0" data-i18n="hero.eyebrow">Curso oficial de IA</p>
           <h1 class="hero-title load-in" style="--i:1" data-i18n="hero.title">Usa la IA en tu trabajo <span class="accent">desde hoy</span></h1>
           <p class="hero-sub load-in" style="--i:2" data-i18n="hero.sub">Cuatro horas de vídeos prácticos para empresarios y trabajadores. Sin tecnicismos, gratuito y con certificado.</p>
-          <div class="hero-ctas load-in" style="--i:3">
+          <p class="price-badge load-in" style="--i:3">
+            <span class="price-old" data-i18n="price.value">Valorado en 250 €</span>
+            <span class="price-free" data-i18n="price.free">Gratis para ti</span>
+            <span class="price-note" data-i18n="price.note">Lo subvenciona Advantys Ai</span>
+          </p>
+          <div class="hero-ctas load-in" style="--i:4">
             <a class="btn btn-primary" href="#inscripcion">
               <span data-i18n="nav.cta">Inscríbete gratis</span>
               <span class="btn-icon" aria-hidden="true"><svg><use href="#i-arrow-right"/></svg></span>
@@ -74,18 +80,22 @@
         <div class="hero-media load-in" style="--i:2">
           <div class="bezel">
             <!--
-              HUECO: fotograma del tráiler o de la intro animada (1600 × 900 px).
-              Cuando lo tengas, sustituye el <div class="slot"> por:
-              <img src="assets/img/hero-trailer.jpg" width="1600" height="900" alt="Alex presentando el curso" fetchpriority="high">
-              Si quieres que el botón abra el vídeo, cambia href="#" por la URL del tráiler.
+              Vídeo de presentación de Alex. Para cambiarlo, sustituye assets/video/intro-curso.mp4
+              (y assets/img/hero-poster.jpg, la imagen que se ve antes de darle al play).
+              Mientras el archivo de vídeo no exista, el botón de play no aparece.
             -->
-            <div class="bezel-core media-frame">
-              <div class="slot slot-hero" role="img" data-i18n-attr="aria-label:slot.trailer" aria-label="Hueco para imagen: fotograma del tráiler (1600 × 900 px)">
-                <span class="slot-label" data-i18n="slot.trailer">Hueco para imagen: fotograma del tráiler (1600 × 900 px)</span>
-              </div>
-              <a class="play-btn" href="#" data-i18n-attr="aria-label:hero.play" aria-label="Ver el tráiler del curso">
+            <div class="bezel-core media-frame hero-player" data-player>
+              <video class="hero-video" playsinline preload="none" poster="assets/img/hero-poster.jpg" data-player-video
+                     data-i18n-attr="aria-label:hero.video" aria-label="Vídeo de presentación del curso con Alex Ruiz">
+                <source src="assets/video/intro-curso.mp4" type="video/mp4">
+              </video>
+              <button class="play-btn" type="button" data-player-play hidden data-i18n-attr="aria-label:hero.play" aria-label="Ver el vídeo de presentación">
                 <svg aria-hidden="true"><use href="#i-play"/></svg>
-              </a>
+              </button>
+              <p class="player-caption">
+                <span class="player-caption-name">Alex Ruiz</span>
+                <span data-i18n="hero.caption">Te presenta el curso</span>
+              </p>
             </div>
           </div>
         </div>
@@ -97,16 +107,7 @@
       <div class="container partners-inner" data-reveal>
         <p id="partners-label" class="partners-label" data-i18n="partners.label">Una iniciativa de</p>
         <div class="partners-logos">
-          <!--
-            HUECO: logo de la Cambra de Comerç, Indústria i Serveis d'Andorra (SVG, alto visible 40 px).
-            Sustituye el <div class="slot"> por:
-            <img src="assets/img/logo-camara-comercio-andorra.svg" height="40" alt="Cambra de Comerç, Indústria i Serveis d'Andorra">
-          -->
-          <div class="slot slot-logo" role="img" aria-label="Cambra de Comerç, Indústria i Serveis d'Andorra">
-            <span class="slot-label" data-i18n="slot.camara">Logo Cámara de Comercio (SVG)</span>
-          </div>
-          <span class="partners-divider" aria-hidden="true"></span>
-          <img class="partners-advantys" src="assets/img/logo-advantys-ai-480.png" srcset="assets/img/logo-advantys-ai-480.png 1x, assets/img/logo-advantys-ai-960.png 2x" width="170" height="30" alt="Advantys Ai">
+          <img class="partners-advantys" src="assets/img/logo-advantys-ai-480.png" srcset="assets/img/logo-advantys-ai-480.png 1x, assets/img/logo-advantys-ai-960.png 2x" width="204" height="36" alt="Advantys Ai">
         </div>
       </div>
     </section>
@@ -177,13 +178,18 @@
 
         <div class="bento">
           <article class="cell cell-video" data-reveal style="--i:0">
-            <!--
-              HUECO: foto de Alex grabando o del set de grabación (1200 × 800 px).
-              Sustituye el <div class="slot"> por:
-              <img src="assets/img/grabacion.jpg" width="1200" height="800" alt="" loading="lazy">
-            -->
-            <div class="slot slot-cell" role="img" data-i18n-attr="aria-label:slot.recording" aria-label="Hueco para imagen: Alex durante la grabación (1200 × 800 px)">
-              <span class="slot-label" data-i18n="slot.recording">Hueco para imagen: Alex durante la grabación (1200 × 800 px)</span>
+            <div class="lesson-mock" aria-hidden="true">
+              <div class="lesson-screen">
+                <span class="lesson-chip" data-i18n="mock.chip">Bloque 1 · Vídeo 1</span>
+                <span class="lesson-play"><svg><use href="#i-play"/></svg></span>
+                <p class="lesson-title" data-i18n="mock.title">Qué es (y qué no es) la IA generativa</p>
+                <div class="lesson-bar"><span></span></div>
+                <p class="lesson-time"><span>03:41</span><span>10:30</span></p>
+              </div>
+              <ul class="lesson-next">
+                <li><span class="lesson-dot is-done"></span><span data-i18n="mock.next1">Qué herramienta usar</span><span class="lesson-min">10 min</span></li>
+                <li><span class="lesson-dot"></span><span data-i18n="mock.next2">Tu primera conversación</span><span class="lesson-min">10 min</span></li>
+              </ul>
             </div>
             <div class="cell-body">
               <svg class="cell-icon" aria-hidden="true"><use href="#i-video"/></svg>
@@ -207,7 +213,7 @@
           <article class="cell cell-cert" data-reveal style="--i:1">
             <svg class="cell-icon" aria-hidden="true"><use href="#i-seal-check"/></svg>
             <h3 data-i18n="how.cert.t">Test y certificado</h3>
-            <p data-i18n="how.cert.d">Un test de 5 preguntas al final de cada bloque. Al superarlos, obtienes el certificado de la Cámara de Comercio.</p>
+            <p data-i18n="how.cert.d">Un test de 5 preguntas al final de cada bloque. Al terminar el curso, recibes tu certificado de finalización.</p>
           </article>
 
           <article class="cell cell-lang" data-reveal style="--i:2">
@@ -215,6 +221,61 @@
             <h3 data-i18n="how.lang.t">En castellano y en catalán</h3>
             <p data-i18n="how.lang.d">Todo el curso está grabado en los dos idiomas. Eliges el tuyo al inscribirte.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificado y Reglamento europeo de IA -->
+    <section class="cert" id="certificado" aria-labelledby="cert-title">
+      <div class="container cert-grid">
+        <div class="cert-copy">
+          <p class="eyebrow eyebrow-on-dark" data-reveal data-i18n="cert.eyebrow">Certificado y Reglamento europeo de IA</p>
+          <h2 id="cert-title" class="section-title" data-reveal style="--i:1" data-i18n="cert.title">Un certificado para ti. Una prueba para tu empresa.</h2>
+          <p class="section-sub" data-reveal style="--i:2" data-i18n="cert.sub">Todos los que terminan el curso reciben un certificado que reconoce la formación realizada. Y para la empresa, es una forma sencilla de demostrar que forma a su equipo en IA.</p>
+
+          <ul class="cert-points">
+            <li data-reveal style="--i:2">
+              <span class="cert-icon" aria-hidden="true"><svg><use href="#i-seal-check"/></svg></span>
+              <div>
+                <h3 data-i18n="cert.p1.t">Certificado de finalización</h3>
+                <p data-i18n="cert.p1.d">Lo emite Advantys Ai a todos los alumnos que completan los 4 bloques y superan sus tests. Lleva tu nombre, las horas de formación, el temario y la fecha.</p>
+              </div>
+            </li>
+            <li data-reveal style="--i:3">
+              <span class="cert-icon" aria-hidden="true"><svg><use href="#i-shield-check"/></svg></span>
+              <div>
+                <h3 data-i18n="cert.p2.t">Un paso más para cumplir el Reglamento europeo de IA</h3>
+                <p data-i18n="cert.p2.d">Desde el 2 de febrero de 2025, el artículo 4 del Reglamento (UE) 2024/1689 pide a las empresas que usan IA que adopten medidas para que su personal tenga formación en IA. Este curso es una de esas medidas.</p>
+              </div>
+            </li>
+            <li data-reveal style="--i:4">
+              <span class="cert-icon" aria-hidden="true"><svg><use href="#i-file-arrow-down"/></svg></span>
+              <div>
+                <h3 data-i18n="cert.p3.t">Constancia de la formación</h3>
+                <p data-i18n="cert.p3.d">Los certificados de tus trabajadores sirven como registro de quién se ha formado, en qué y cuándo. Y en el bloque 4 aprenderéis lo básico del reglamento y las normas de uso en la empresa.</p>
+              </div>
+            </li>
+          </ul>
+          <p class="cert-note" data-reveal style="--i:5" data-i18n="cert.note">El curso ayuda a cumplir la obligación de formación del artículo 4, aplicable a las empresas de la UE y a las que ofrecen servicios en el mercado europeo. No sustituye el resto de obligaciones que el reglamento pueda imponer a cada empresa.</p>
+        </div>
+
+        <div class="cert-visual" data-reveal style="--i:2">
+          <figure class="cert-card" aria-hidden="true">
+            <div class="cert-card-top">
+              <img src="assets/img/logo-advantys-ai-480.png" srcset="assets/img/logo-advantys-ai-480.png 1x, assets/img/logo-advantys-ai-960.png 2x" width="136" height="24" alt="" loading="lazy">
+              <span class="cert-seal"><svg><use href="#i-seal-check"/></svg></span>
+            </div>
+            <p class="cert-card-kicker" data-i18n="cert.card.kicker">Certificado de finalización</p>
+            <p class="cert-card-course" data-i18n="cert.card.course">Curso oficial de IA</p>
+            <p class="cert-card-label" data-i18n="cert.card.label">Se certifica que</p>
+            <p class="cert-card-name" data-i18n="cert.card.name">Nombre del alumno</p>
+            <p class="cert-card-text" data-i18n="cert.card.text">ha completado los 4 bloques del curso y ha superado sus tests de evaluación.</p>
+            <dl class="cert-card-data">
+              <div><dt data-i18n="cert.card.hours.t">Duración</dt><dd data-i18n="cert.card.hours">4 horas</dd></div>
+              <div><dt data-i18n="cert.card.scope.t">Formación</dt><dd data-i18n="cert.card.scope">Alfabetización en IA · art. 4 RIA</dd></div>
+            </dl>
+            <div class="cert-card-bar"></div>
+          </figure>
         </div>
       </div>
     </section>
@@ -270,15 +331,8 @@
       <div class="container instructor-grid">
         <div class="instructor-media" data-reveal>
           <div class="bezel">
-            <!--
-              HUECO: foto de Alex Ruiz (800 × 1000 px, vertical).
-              Sustituye el <div class="slot"> por:
-              <img src="assets/img/alex-ruiz.jpg" width="800" height="1000" alt="Alex Ruiz" loading="lazy">
-            -->
-            <div class="bezel-core">
-              <div class="slot slot-portrait" role="img" data-i18n-attr="aria-label:slot.alex" aria-label="Hueco para foto: Alex Ruiz (800 × 1000 px)">
-                <span class="slot-label" data-i18n="slot.alex">Hueco para foto: Alex Ruiz (800 × 1000 px)</span>
-              </div>
+            <div class="bezel-core instructor-photo">
+              <img src="assets/img/alex-ruiz.jpg" width="1000" height="1250" alt="Alex Ruiz, responsable técnico de Advantys Ai" loading="lazy" decoding="async">
             </div>
           </div>
         </div>
@@ -314,9 +368,9 @@
           <h2 id="signup-title" class="section-title" data-i18n="form.title">Empieza con el primer bloque</h2>
           <p class="section-sub" data-i18n="form.sub">Déjanos tus datos y te enviaremos el acceso a la plataforma del curso en cuanto se publique el primer bloque.</p>
           <ul class="perks">
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="form.perk1">Gratuito</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="form.perk1">Gratuito: valorado en 250 € y subvencionado por Advantys Ai</span></li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="form.perk2">Cuatro horas, a tu ritmo</span></li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="form.perk3">Certificado de la Cámara de Comercio</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="form.perk3">Certificado de finalización con tu nombre</span></li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="form.perk4">En castellano o en catalán</span></li>
           </ul>
         </div>
@@ -428,7 +482,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <img src="assets/img/logo-advantys-ai-480.png" srcset="assets/img/logo-advantys-ai-480.png 1x, assets/img/logo-advantys-ai-960.png 2x" width="113" height="20" alt="Advantys Ai" loading="lazy">
-      <p class="footer-rights" data-i18n="footer.rights">© 2026 Advantys Ai SL. Curso oficial de IA en colaboración con la Cambra de Comerç, Indústria i Serveis d'Andorra.</p>
+      <p class="footer-rights" data-i18n="footer.rights">© 2026 Advantys Ai SL. Curso oficial de IA, una iniciativa de Advantys Ai.</p>
       <nav class="footer-links" aria-label="Legal">
                 <a href="privacidad.html" data-i18n="footer.privacy">Política de privacidad</a>
         <a href="aviso-legal.html" data-i18n="footer.legal">Aviso legal</a>
