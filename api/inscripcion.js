@@ -26,9 +26,6 @@ const SECTOR = {
 
 const IDIOMA = { ca: "Catalán", es: "Castellano" };
 
-// Mientras solo exista la versión en catalán, todas las inscripciones reciben ese curso
-const CURSO_DISPONIBLE = "ca";
-
 // Orígenes que puede declarar la web. Cualquier otro valor se ignora.
 const ORIGENES = {
   libro: { origen: "libro-vende-mas-y-trabaja-menos", tag: "origen-libro" }
@@ -90,7 +87,8 @@ module.exports = async function handler(req, res) {
   const hoy = new Date().toISOString().slice(0, 10);
   const novedades = body.acepta_novedades === true;
 
-  const tags = ["curso-ia-inscrito", "curso-ia-" + CURSO_DISPONIBLE, procedencia.tag];
+  // El idioma elegido decide el email de bienvenida (catalán o castellano) en el Sistema Advantys
+  const tags = ["curso-ia-inscrito", "curso-ia-" + idiomaElegido, procedencia.tag];
   if (novedades) tags.push("curso-ia-novedades");
 
   const payload = {
@@ -101,7 +99,7 @@ module.exports = async function handler(req, res) {
     company_name: empresa,
     perfil: perfil,
     sector: sector,
-    idioma_curso: IDIOMA[CURSO_DISPONIBLE],
+    idioma_curso: IDIOMA[idiomaElegido],
     idioma_elegido: IDIOMA[idiomaElegido],
     fecha_consentimiento: hoy,
     acepta_novedades: novedades ? "Sí" : "No",
