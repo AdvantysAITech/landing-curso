@@ -572,6 +572,11 @@
     video.addEventListener("error", function () { setState("blocked"); });
 
     startBtn.addEventListener("click", start);
+    var cover = root.querySelector("[data-player-cover]");
+    if (cover) cover.addEventListener("click", function (e) {
+      if (root.getAttribute("data-state") !== "paused" || e.target.closest("[data-player-play]")) return;
+      start();
+    });
     if (shield) shield.addEventListener("click", function () {
       if (root.getAttribute("data-state") !== "playing") return;
       userPaused = true;
