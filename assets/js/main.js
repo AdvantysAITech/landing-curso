@@ -494,32 +494,32 @@
   }
 
   /* ---------------- Vídeo de presentación ---------------- */
-  // El botón de play solo aparece si existe el archivo de vídeo.
+  // El vídeo está en YouTube. Hasta que se pulsa el play solo se ve la imagen de portada:
+  // así la página carga rápido y no se conecta con YouTube sin que el visitante lo pida.
   var player = document.querySelector("[data-player]");
   if (player) {
-    var pVideo = player.querySelector("[data-player-video]");
     var pPlay = player.querySelector("[data-player-play]");
-    var pSource = pVideo && pVideo.querySelector("source");
-    var pSrc = pSource && pSource.getAttribute("src");
-    if (pVideo && pPlay && pSrc && window.fetch) {
-      fetch(pSrc, { method: "HEAD" }).then(function (r) {
-        var type = (r.headers.get("content-type") || "").toLowerCase();
-        if (r.ok && type.indexOf("video") > -1) pPlay.hidden = false;
-      }).catch(function () {});
-
+    var pPoster = player.querySelector("[data-player-poster]");
+    var ytId = player.getAttribute("data-youtube-id");
+    if (pPlay && ytId) {
       pPlay.addEventListener("click", function () {
+        var lang = document.documentElement.lang === "ca" ? "ca" : "es";
+        var frame = document.createElement("iframe");
+        frame.className = "hero-video";
+        frame.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(ytId) +
+          "?autoplay=1&rel=0&playsinline=1&modestbranding=1&hl=" + lang;
+        frame.title = (pPoster && pPoster.getAttribute("alt")) || "Vídeo de presentación";
+        frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+        frame.allowFullscreen = true;
+        frame.referrerPolicy = "strict-origin-when-cross-origin";
+        player.appendChild(frame);
         player.classList.add("is-playing");
         pPlay.hidden = true;
-        pVideo.controls = true;
-        var pr = pVideo.play();
-        if (pr && pr.catch) pr.catch(function () {});
+        if (pPoster) pPoster.hidden = true;
+        frame.focus();
       });
-      pVideo.addEventListener("ended", function () {
-        player.classList.remove("is-playing");
-        pVideo.controls = false;
-        pVideo.load();
-        pPlay.hidden = false;
-      });
+    } else if (pPlay) {
+      pPlay.hidden = true;
     }
   }
 

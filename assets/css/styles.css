@@ -422,6 +422,8 @@ button, [role="tab"], .btn, .lang-btn {
   object-fit: cover;
   background: #141010;
 }
+iframe.hero-video { border: 0; z-index: 3; }
+.hero-video[hidden] { display: none; }
 .play-btn { border: 0; cursor: pointer; z-index: 2; }
 .play-btn[hidden] { display: none; }
 .player-caption {

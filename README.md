@@ -11,9 +11,10 @@ Web estática (HTML, CSS y JS sin dependencias). Ábrela con Live Server en VS C
 - `vercel.json` y `robots.txt` · la página no se indexa (es interna)
 
 ## Vídeo de presentación (portada)
-- El vídeo va en `assets/video/intro-curso.mp4` (MP4 H.264, 16:9, idealmente menos de 15 MB).
+- El vídeo está en YouTube: https://youtu.be/9ukXJ55jGDc
+- Para cambiarlo, pon el ID del vídeo nuevo (lo que va después de `youtu.be/`) en `data-youtube-id` del bloque `data-player` de `index.html`.
 - La imagen que se ve antes de darle al play es `assets/img/hero-poster.jpg` (1600 × 900 px).
-- Mientras el archivo de vídeo no exista, el botón de play no aparece: la portada muestra solo la imagen.
+- YouTube no se carga hasta que el visitante pulsa el play (modo de privacidad mejorada, `youtube-nocookie.com`). Está explicado en `cookies.html`.
 
 ## Imágenes
 - `assets/img/alex-ruiz.jpg` · foto de Alex con fondo oscuro y luz de marca (1000 × 1250 px)
@@ -23,7 +24,6 @@ Web estática (HTML, CSS y JS sin dependencias). Ábrela con Live Server en VS C
 ## Pendiente de completar
 | Qué | Dónde |
 | --- | --- |
-| Vídeo de presentación de Alex | `assets/video/intro-curso.mp4` |
 | URL del webhook de inscripciones | Vercel → Settings → Environment Variables → `INSCRIPCION_WEBHOOK_URL` |
 | NRT de Advantys Ai | `aviso-legal.html` y `privacidad.html` |
 

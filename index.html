@@ -80,16 +80,15 @@
         <div class="hero-media load-in" style="--i:2">
           <div class="bezel">
             <!--
-              Vídeo de presentación de Alex. Para cambiarlo, sustituye assets/video/intro-curso.mp4
-              (y assets/img/hero-poster.jpg, la imagen que se ve antes de darle al play).
-              Mientras el archivo de vídeo no exista, el botón de play no aparece.
+              Vídeo de presentación de Alex, alojado en YouTube. Para cambiarlo, pon el ID del vídeo
+              nuevo en data-youtube-id (lo que va después de youtu.be/ en el enlace).
+              La imagen que se ve antes de darle al play es assets/img/hero-poster.jpg.
+              YouTube no se carga hasta que el visitante pulsa el play.
             -->
-            <div class="bezel-core media-frame hero-player" data-player>
-              <video class="hero-video" playsinline preload="none" poster="assets/img/hero-poster.jpg" data-player-video
-                     data-i18n-attr="aria-label:hero.video" aria-label="Vídeo de presentación del curso con Alex Ruiz">
-                <source src="assets/video/intro-curso.mp4" type="video/mp4">
-              </video>
-              <button class="play-btn" type="button" data-player-play hidden data-i18n-attr="aria-label:hero.play" aria-label="Ver el vídeo de presentación">
+            <div class="bezel-core media-frame hero-player" data-player data-youtube-id="9ukXJ55jGDc">
+              <img class="hero-video" src="assets/img/hero-poster.jpg" width="1600" height="900" data-player-poster
+                   data-i18n-attr="alt:hero.video" alt="Vídeo de presentación del curso con Alex Ruiz">
+              <button class="play-btn" type="button" data-player-play data-i18n-attr="aria-label:hero.play" aria-label="Ver el vídeo de presentación">
                 <svg aria-hidden="true"><use href="#i-play"/></svg>
               </button>
               <p class="player-caption">
