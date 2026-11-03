@@ -13,12 +13,12 @@ Web estática (HTML, CSS y JS sin dependencias). Ábrela con Live Server en VS C
 ## Vídeo de presentación (portada)
 - El vídeo está en YouTube: https://youtu.be/9ukXJ55jGDc
 - Para cambiarlo, pon el ID del vídeo nuevo (lo que va después de `youtu.be/`) en `data-youtube-id` del bloque `data-player` de `index.html`.
-- La imagen que se ve antes de darle al play es `assets/img/hero-poster.jpg` (1600 × 900 px).
+- La portada antes de darle al play es un fotograma del vídeo, `assets/img/hero-poster-mirada.jpg` (1600 × 900 px), oscurecido y con la frase de `player.hook` (`i18n.js`).
 - YouTube no se carga hasta que el visitante pulsa el play (modo de privacidad mejorada, `youtube-nocookie.com`). Está explicado en `cookies.html`.
 
 ## Imágenes
 - `assets/img/alex-ruiz.jpg` · foto de Alex con fondo oscuro y luz de marca (1000 × 1250 px)
-- `assets/img/hero-poster.jpg` · portada del vídeo
+- `assets/img/hero-poster-mirada.jpg` · fotograma del vídeo que sirve de portada
 - `assets/img/og-image.jpg` · imagen para compartir en redes (1200 × 630 px)
 
 ## Pendiente de completar
