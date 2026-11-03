@@ -16,7 +16,7 @@
     endpoint: "/api/inscripcion",
     origen: "landing-curso-ia-ccandorra",
     // Orígenes admitidos por enlace (?origen=...). Ej.: los QR del libro llegan con ?origen=libro
-    origenesPorEnlace: ["libro"],
+    origenesPorEnlace: ["libro", "web"],
     idiomaPorDefecto: "es"
   };
 
