@@ -497,6 +497,9 @@ button, [role="tab"], .btn, .lang-btn {
 .hero-player[data-cover="frase"] .player-hook { font-size: clamp(2rem, 4.6vw, 4.125rem); line-height: 1.04; letter-spacing: -0.045em; }
 .player-hook-accent {
   display: block;
+  /* Hueco extra abajo para que el degradado no corte la g ni otras letras con rabito */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
   background: linear-gradient(100deg, #ff6a4d 0%, #ffb08a 100%);
   -webkit-background-clip: text;
   background-clip: text;
