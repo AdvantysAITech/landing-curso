@@ -68,17 +68,21 @@
         <div class="container">
           <div class="hero-media load-in" style="--i:3">
             <!--
-              Vídeo de presentación de Alex, alojado en YouTube. Para cambiarlo, pon el ID del vídeo
-              nuevo en data-youtube-id (lo que va después de youtu.be/ en el enlace) y su duración
-              en hero.duration (i18n.js). La imagen de portada es assets/img/hero-poster-mirada.jpg.
-              YouTube no se carga hasta que el visitante pulsa el play. Sin pausa ni controles de avance.
+              Vídeo de presentación de Alex (MP4 1080p). Para cambiarlo, pon el enlace del archivo nuevo
+              en data-video-src y su duración en hero.duration (i18n.js).
+              La imagen de portada es assets/img/hero-poster-mirada.jpg.
+              El vídeo no se descarga hasta que el visitante pulsa el play. Sin pausa ni controles de avance.
             -->
-            <div class="hero-player" data-player data-youtube-id="9ukXJ55jGDc" data-state="idle" data-cover="frase">
+            <div class="hero-player" data-player data-video-src="https://assets.cdn.filesafe.space/tT0GAvtx8iOs64cDrzg2/media/6aea108b3fe7ef7efa4015ab.mp4" data-state="idle" data-cover="frase">
               <img class="player-poster" src="assets/img/hero-poster-mirada.jpg" width="1600" height="900" data-player-poster
                    data-i18n-attr="alt:hero.video" alt="Vídeo de presentación del curso con Alex Ruiz">
-              <div class="player-frame" data-player-frame></div>
+              <div class="player-frame" data-player-frame>
+                <video class="player-video" playsinline preload="none" disablepictureinpicture disableremoteplayback
+                       controlslist="nodownload noplaybackrate nofullscreen" data-player-video tabindex="-1"></video>
+              </div>
+              <span class="player-spinner" aria-hidden="true"></span>
 
-              <!-- Capa sobre el vídeo: no deja tocar YouTube (ni pausar ni mover el vídeo) -->
+              <!-- Capa sobre el vídeo: no deja pausar ni mover el vídeo -->
               <div class="player-shield" aria-hidden="true"></div>
 
               <div class="player-cover" data-player-cover>

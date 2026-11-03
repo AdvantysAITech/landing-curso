@@ -427,7 +427,7 @@ button, [role="tab"], .btn, .lang-btn {
 }
 .price-note { color: var(--ink-2); font-weight: 500; }
 
-/* ---------- Vídeo de presentación (reproductor propio sobre YouTube) ---------- */
+/* ---------- Vídeo de presentación (reproductor propio sobre un MP4) ---------- */
 .hero-player {
   position: relative;
   aspect-ratio: 16 / 9;
@@ -438,7 +438,7 @@ button, [role="tab"], .btn, .lang-btn {
 }
 .player-poster,
 .player-frame,
-.player-frame iframe {
+.player-video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -446,9 +446,32 @@ button, [role="tab"], .btn, .lang-btn {
 }
 .player-poster { object-fit: cover; transition: opacity 300ms ease; }
 .player-poster[hidden] { display: block; opacity: 0; pointer-events: none; }
-.player-frame iframe { border: 0; pointer-events: none; }
+.player-video { object-fit: cover; background: #141010; pointer-events: none; }
+.hero-player:fullscreen .player-video { object-fit: contain; }
 
-/* Capa transparente sobre el vídeo: nadie llega a los menús de YouTube */
+/* Indicador de carga mientras el vídeo arranca o se queda esperando datos */
+.player-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 4;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+  animation: player-spin 800ms linear infinite;
+}
+.hero-player[data-state="loading"] .player-spinner,
+.hero-player[data-state="playing"][data-buffering] .player-spinner { opacity: 1; }
+@keyframes player-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .player-spinner { animation-duration: 2400ms; } }
+
+/* Capa transparente sobre el vídeo: no deja pausarlo ni abrir el menú del navegador */
 .player-shield { position: absolute; inset: 0; z-index: 2; display: none; }
 .hero-player[data-state="playing"] .player-shield { display: block; }
 

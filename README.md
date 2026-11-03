@@ -11,10 +11,10 @@ Web estática (HTML, CSS y JS sin dependencias). Ábrela con Live Server en VS C
 - `vercel.json` y `robots.txt` · la página no se indexa (es interna)
 
 ## Vídeo de presentación (portada)
-- El vídeo está en YouTube: https://youtu.be/9ukXJ55jGDc
-- Para cambiarlo, pon el ID del vídeo nuevo (lo que va después de `youtu.be/`) en `data-youtube-id` del bloque `data-player` de `index.html`.
+- El vídeo es un MP4 en 1080p preparado para web (se reproduce mientras se descarga). Su enlace está en `data-video-src` del bloque `data-player` de `index.html`.
+- Para cambiarlo, sube el MP4 nuevo, copia su enlace y ponlo en `data-video-src`. Actualiza la duración en `hero.duration` (`i18n.js`).
 - La portada antes de darle al play es un fotograma del vídeo, `assets/img/hero-poster-mirada.jpg` (1600 × 900 px), oscurecido y con la frase de `player.hook` (`i18n.js`).
-- YouTube no se carga hasta que el visitante pulsa el play (modo de privacidad mejorada, `youtube-nocookie.com`). Está explicado en `cookies.html`.
+- El vídeo no se descarga hasta que el visitante pulsa el play. No se puede pausar ni mover; solo hay sonido y pantalla completa.
 
 ## Imágenes
 - `assets/img/alex-ruiz.jpg` · foto de Alex con fondo oscuro y luz de marca (1000 × 1250 px)
