@@ -448,31 +448,42 @@ button, [role="tab"], .btn, .lang-btn {
 .player-poster[hidden] { display: block; opacity: 0; pointer-events: none; }
 .player-frame iframe { border: 0; pointer-events: none; }
 
-/* Capa transparente: tocar el vídeo lo pausa, y nadie llega a los menús de YouTube */
-.player-surface {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: none;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  cursor: pointer;
-}
-.hero-player[data-state="playing"] .player-surface { display: block; }
+/* Capa transparente sobre el vídeo: nadie llega a los menús de YouTube */
+.player-shield { position: absolute; inset: 0; z-index: 2; display: none; }
+.hero-player[data-state="playing"] .player-shield { display: block; }
 
 .player-cover {
   position: absolute;
   inset: 0;
   z-index: 3;
   display: grid;
-  place-items: center;
-  transition: background-color 250ms ease;
+  align-items: center;
 }
 .hero-player[data-state="playing"] .player-cover,
 .hero-player[data-state="loading"] .player-cover { visibility: hidden; }
-.hero-player[data-state="paused"] .player-cover,
-.hero-player[data-state="ended"] .player-cover { background: rgba(16, 12, 12, 0.62); }
+.hero-player[data-state="idle"] .player-cover,
+.hero-player[data-state="blocked"] .player-cover {
+  /* Oscurece la pared de la izquierda para que se lea la frase */
+  background: linear-gradient(90deg, rgba(16, 12, 12, 0.82) 0%, rgba(16, 12, 12, 0.55) 30%, rgba(16, 12, 12, 0) 58%);
+}
+.hero-player[data-state="ended"] .player-cover { background: rgba(16, 12, 12, 0.66); justify-items: center; }
+
+.player-intro {
+  display: grid;
+  justify-items: start;
+  gap: clamp(18px, 2.4vw, 28px);
+  max-width: 34%;
+  margin-left: 6%;
+}
+.player-intro[hidden] { display: none; }
+.player-hook {
+  font-size: clamp(1.5rem, 2.7vw, 2.375rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  color: #fff;
+  text-wrap: balance;
+}
 
 .player-start {
   display: inline-flex;
@@ -520,23 +531,6 @@ button, [role="tab"], .btn, .lang-btn {
 .player-end[hidden] { display: none; }
 .player-end .btn-primary { background: #fff; color: var(--ink); }
 
-.player-caption {
-  position: absolute;
-  left: 18px;
-  bottom: 18px;
-  display: grid;
-  padding: 10px 16px;
-  border-radius: 14px;
-  background: rgba(20, 16, 16, 0.55);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.8125rem;
-  line-height: 1.35;
-}
-.player-caption-name { color: #fff; font-weight: 600; font-size: 0.9375rem; }
-.hero-player:not([data-state="idle"]) .player-caption { display: none; }
-
 /* Barra inferior: progreso (no se puede arrastrar) y controles mínimos */
 .player-bar { position: absolute; inset: auto 0 0 0; z-index: 4; pointer-events: none; }
 .player-bar[hidden] { display: none; }
@@ -582,10 +576,7 @@ button, [role="tab"], .btn, .lang-btn {
 @media (hover: hover) and (pointer: fine) {
   .player-ctl:hover { background: rgba(255, 255, 255, 0.14); }
 }
-.player-ctl .ico-muted,
-.player-ctl .ico-play { display: none; }
-.hero-player[data-state="paused"] .player-ctl .ico-pause { display: none; }
-.hero-player[data-state="paused"] .player-ctl .ico-play { display: block; }
+.player-ctl .ico-muted { display: none; }
 .player-ctl[aria-pressed="true"] .ico-muted { display: block; }
 .player-ctl[aria-pressed="true"] .ico-sound { display: none; }
 .hero-player:fullscreen { border-radius: 0; }
@@ -1600,7 +1591,12 @@ main.is-switching { opacity: 0.4; transition-duration: 120ms; }
   .hero-ctas .btn { flex: 1 1 auto; }
   .price-badge { border-radius: 20px; padding: 10px 14px; }
   .price-old { padding-left: 0; }
-  .player-caption { display: none; }
+  .player-hook { display: none; }
+  .hero-player[data-state="idle"] .player-cover,
+  .hero-player[data-state="blocked"] .player-cover { align-items: end; }
+  .player-intro { max-width: none; margin: 0 0 12px; justify-self: center; }
+  .hero-player[data-state="idle"] .player-cover,
+  .hero-player[data-state="blocked"] .player-cover { background: linear-gradient(180deg, rgba(16, 12, 12, 0) 45%, rgba(16, 12, 12, 0.6) 100%); }
   .hero-media { padding: 5px; border-radius: 22px; }
   .hero-player { border-radius: 17px; }
   .player-start { gap: 12px; padding: 6px 18px 6px 6px; }

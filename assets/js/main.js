@@ -503,14 +503,12 @@
     var ytId = root.getAttribute("data-youtube-id");
     var poster = root.querySelector("[data-player-poster]");
     var frameHost = root.querySelector("[data-player-frame]");
+    var intro = root.querySelector("[data-player-intro]");
     var startBtn = root.querySelector("[data-player-play]");
-    var startLabel = root.querySelector("[data-player-label]");
     var endBox = root.querySelector("[data-player-end]");
     var replayBtn = root.querySelector("[data-player-replay]");
-    var surface = root.querySelector("[data-player-toggle]");
     var bar = root.querySelector("[data-player-bar]");
     var progress = root.querySelector("[data-player-progress]");
-    var pauseBtn = root.querySelector("[data-player-pause]");
     var muteBtn = root.querySelector("[data-player-mute]");
     var fsBtn = root.querySelector("[data-player-fullscreen]");
     var yt = null;
@@ -519,19 +517,15 @@
 
     if (fsBtn && (document.fullscreenEnabled || document.webkitFullscreenEnabled)) fsBtn.hidden = false;
 
+    // Estados: idle (portada), loading, playing, blocked (el navegador no dejó arrancar), ended
     function setState(st) {
       root.setAttribute("data-state", st);
-      var started = st !== "idle";
-      if (poster) poster.hidden = st === "playing" || st === "paused";
-      if (bar) bar.hidden = !(st === "playing" || st === "paused");
+      if (poster) poster.hidden = st === "playing";
+      if (bar) bar.hidden = st !== "playing";
       if (endBox) endBox.hidden = st !== "ended";
-      if (startBtn) startBtn.hidden = st === "ended";
-      if (startLabel) {
-        startLabel.setAttribute("data-i18n", st === "paused" ? "player.resume" : "player.watch");
-        startLabel.textContent = t(startLabel.getAttribute("data-i18n"));
-      }
-      if (st === "playing") { startTicker(); } else { stopTicker(); }
-      if (!started && progress) progress.style.transform = "scaleX(0)";
+      if (intro) intro.hidden = st === "ended";
+      if (st === "playing") startTicker(); else stopTicker();
+      if (st === "idle" && progress) progress.style.transform = "scaleX(0)";
     }
 
     function startTicker() {
@@ -545,11 +539,19 @@
     }
     function stopTicker() { if (ticker) { window.clearInterval(ticker); ticker = null; } }
 
+    // Pide a YouTube la máxima calidad. YouTube decide al final según la pantalla y la conexión.
+    function bestQuality() {
+      if (!yt || !yt.setPlaybackQuality) return;
+      var levels = (yt.getAvailableQualityLevels && yt.getAvailableQualityLevels()) || [];
+      var want = ["hd1080", "hd720"].filter(function (q) { return levels.indexOf(q) > -1; })[0] || "hd1080";
+      try { yt.setPlaybackQuality(want); } catch (e) {}
+    }
+
     function loadApi(cb) {
       if (window.YT && window.YT.Player) { cb(); return; }
       var prev = window.onYouTubeIframeAPIReady;
       window.onYouTubeIframeAPIReady = function () { if (prev) prev(); cb(); };
-      if (!document.querySelector('script[data-yt-api]')) {
+      if (!document.querySelector("script[data-yt-api]")) {
         var sc = document.createElement("script");
         sc.src = "https://www.youtube.com/iframe_api";
         sc.async = true;
@@ -568,7 +570,7 @@
           videoId: ytId,
           playerVars: {
             autoplay: 1, controls: 0, disablekb: 1, fs: 0, rel: 0, modestbranding: 1,
-            playsinline: 1, iv_load_policy: 3, cc_load_policy: 0,
+            playsinline: 1, iv_load_policy: 3, cc_load_policy: 0, vq: "hd1080",
             hl: document.documentElement.lang === "ca" ? "ca" : "es",
             origin: window.location.origin
           },
@@ -577,17 +579,23 @@
               var f = e.target.getIframe();
               f.setAttribute("title", (poster && poster.getAttribute("alt")) || "Vídeo");
               f.setAttribute("tabindex", "-1");
+              bestQuality();
               e.target.playVideo();
               // Si el navegador no deja arrancar solo (algunos móviles), se vuelve a mostrar el play
               startWatch = window.setTimeout(function () {
-                if (root.getAttribute("data-state") === "loading") setState("paused");
+                if (root.getAttribute("data-state") === "loading") setState("blocked");
               }, 2500);
             },
             onStateChange: function (e) {
               var S = window.YT.PlayerState;
-              if (e.data === S.PLAYING) { if (startWatch) window.clearTimeout(startWatch); setState("playing"); }
-              else if (e.data === S.PAUSED) setState("paused");
-              else if (e.data === S.ENDED) {
+              if (e.data === S.PLAYING) {
+                if (startWatch) window.clearTimeout(startWatch);
+                setState("playing");
+                bestQuality();
+              } else if (e.data === S.PAUSED && root.getAttribute("data-state") === "playing") {
+                // Nadie puede pausar desde la página: si algo lo para, sigue reproduciendo
+                e.target.playVideo();
+              } else if (e.data === S.ENDED) {
                 if (progress) progress.style.transform = "scaleX(1)";
                 if (document.fullscreenElement === root && document.exitFullscreen) document.exitFullscreen();
                 setState("ended");
@@ -598,16 +606,9 @@
       });
     }
 
-    function play() {
+    startBtn.addEventListener("click", function () {
       if (!yt) { create(); return; }
       if (yt.playVideo) yt.playVideo();
-    }
-    function pause() { if (yt && yt.pauseVideo) yt.pauseVideo(); }
-
-    startBtn.addEventListener("click", play);
-    if (surface) surface.addEventListener("click", pause);
-    if (pauseBtn) pauseBtn.addEventListener("click", function () {
-      if (root.getAttribute("data-state") === "playing") pause(); else play();
     });
     if (replayBtn) replayBtn.addEventListener("click", function () {
       if (!yt) return;
@@ -623,13 +624,6 @@
       var inFs = document.fullscreenElement || document.webkitFullscreenElement;
       if (inFs) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); }
       else { (root.requestFullscreen || root.webkitRequestFullscreen).call(root); }
-    });
-    root.addEventListener("keydown", function (e) {
-      var st = root.getAttribute("data-state");
-      if ((e.key === " " || e.key === "k") && (st === "playing" || st === "paused") && e.target === root) {
-        e.preventDefault();
-        if (st === "playing") pause(); else play();
-      }
     });
   }
 

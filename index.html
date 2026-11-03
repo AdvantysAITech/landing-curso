@@ -70,24 +70,28 @@
             <!--
               Vídeo de presentación de Alex, alojado en YouTube. Para cambiarlo, pon el ID del vídeo
               nuevo en data-youtube-id (lo que va después de youtu.be/ en el enlace) y su duración
-              en hero.duration (i18n.js). La imagen de portada es assets/img/hero-poster.jpg.
-              YouTube no se carga hasta que el visitante pulsa el play. Sin controles de avance.
+              en hero.duration (i18n.js). La imagen de portada es assets/img/hero-poster-mirada.jpg.
+              YouTube no se carga hasta que el visitante pulsa el play. Sin pausa ni controles de avance.
             -->
             <div class="hero-player" data-player data-youtube-id="9ukXJ55jGDc" data-state="idle">
-              <img class="player-poster" src="assets/img/hero-poster.jpg" width="1600" height="900" data-player-poster
+              <img class="player-poster" src="assets/img/hero-poster-mirada.jpg" width="1600" height="900" data-player-poster
                    data-i18n-attr="alt:hero.video" alt="Vídeo de presentación del curso con Alex Ruiz">
               <div class="player-frame" data-player-frame></div>
 
-              <button class="player-surface" type="button" data-player-toggle tabindex="-1" aria-hidden="true"></button>
+              <!-- Capa sobre el vídeo: no deja tocar YouTube (ni pausar ni mover el vídeo) -->
+              <div class="player-shield" aria-hidden="true"></div>
 
               <div class="player-cover" data-player-cover>
-                <button class="player-start" type="button" data-player-play data-i18n-attr="aria-label:hero.play" aria-label="Ver el vídeo de presentación">
-                  <span class="player-start-icon" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-                  <span class="player-start-text">
-                    <span class="player-start-label" data-player-label data-i18n="player.watch">Ver el vídeo</span>
-                    <span class="player-start-time" data-i18n="hero.duration">2 min</span>
-                  </span>
-                </button>
+                <div class="player-intro" data-player-intro>
+                  <p class="player-hook" data-i18n="player.hook">Por qué tienes que hacer este curso ahora</p>
+                  <button class="player-start" type="button" data-player-play data-i18n-attr="aria-label:hero.play" aria-label="Ver el vídeo de presentación">
+                    <span class="player-start-icon" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+                    <span class="player-start-text">
+                      <span class="player-start-label" data-i18n="player.watch">Ver el vídeo</span>
+                      <span class="player-start-time" data-i18n="hero.duration">2 min con Alex Ruiz</span>
+                    </span>
+                  </button>
+                </div>
                 <div class="player-end" data-player-end hidden>
                   <a class="btn btn-primary" href="#inscripcion">
                     <span data-i18n="nav.cta">Inscríbete gratis</span>
@@ -95,19 +99,11 @@
                   </a>
                   <button class="btn btn-ghost-dark" type="button" data-player-replay data-i18n="player.replay">Volver a verlo</button>
                 </div>
-                <p class="player-caption">
-                  <span class="player-caption-name">Alex Ruiz</span>
-                  <span data-i18n="hero.caption">Te presenta el curso</span>
-                </p>
               </div>
 
               <div class="player-bar" data-player-bar hidden>
                 <div class="player-progress" aria-hidden="true"><span data-player-progress></span></div>
                 <div class="player-controls">
-                  <button class="player-ctl" type="button" data-player-pause data-i18n-attr="aria-label:player.pause" aria-label="Pausar">
-                    <svg class="ico-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg>
-                    <svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.6v12.8a1 1 0 0 0 1.5.86l10.4-6.4a1 1 0 0 0 0-1.72L9.5 4.74A1 1 0 0 0 8 5.6z"/></svg>
-                  </button>
                   <button class="player-ctl" type="button" data-player-mute aria-pressed="false" data-i18n-attr="aria-label:player.mute" aria-label="Silenciar">
                     <svg class="ico-sound" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.6 7.6 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
                     <svg class="ico-muted" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
