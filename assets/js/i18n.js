@@ -6,7 +6,7 @@
 window.I18N = {
   es: {
     "meta.title": "Curso oficial de IA | Advantys Ai",
-    "meta.description": "Curso gratuito para aprender a usar la inteligencia artificial en tu trabajo. Valorado en 250 € y subvencionado por Advantys Ai. 21 vídeos prácticos, en castellano y catalán, con certificado.",
+    "meta.description": "Curso gratuito para aprender a usar la inteligencia artificial en tu trabajo. Valorado en 250 € y subvencionado por Advantys Ai. 21 vídeos prácticos en castellano, con certificado.",
 
     "nav.cta": "Inscríbete gratis",
     "nav.lang": "Idioma",
@@ -91,8 +91,8 @@ window.I18N = {
     "cert.card.hours": "4 horas",
     "cert.card.scope.t": "Formación",
     "cert.card.scope": "Alfabetización en IA · art. 4 RIA",
-    "how.lang.t": "En castellano y en catalán",
-    "how.lang.d": "Todo el curso está grabado en los dos idiomas. Eliges el tuyo al inscribirte.",
+    "how.lang.t": "En castellano, y pronto en catalán",
+    "how.lang.d": "El curso está grabado en castellano. La versión en catalán está en preparación y llegará pronto.",
 
     "audience.title": "Pensado para quien no es técnico",
     "audience.body": "Si usas el correo y el navegador, puedes hacer este curso.",
@@ -121,7 +121,7 @@ window.I18N = {
     "faq.4.q": "¿Cuándo empieza?",
     "faq.4.a": "La inscripción ya está abierta. Te enviaremos el acceso a la plataforma por email en cuanto se publique el primer bloque. Después, lo haces a tu ritmo.",
     "faq.5.q": "¿En qué idioma está?",
-    "faq.5.a": "En castellano y en catalán. Todos los vídeos están grabados en los dos idiomas.",
+    "faq.5.a": "De momento, en castellano. La versión en catalán está en preparación y llegará pronto.",
     "faq.6.q": "¿Obtengo un certificado?",
     "faq.6.a": "Sí. Todos los que terminan el curso reciben un certificado de finalización de Advantys Ai con su nombre, las horas de formación, el temario y la fecha. Para obtenerlo hay que completar los 4 bloques y superar el test de 5 preguntas de cada uno.",
     "faq.7.q": "¿Tengo que meter datos de mi empresa en la IA?",
@@ -135,7 +135,7 @@ window.I18N = {
     "form.perk1": "Gratuito: valorado en 250 € y subvencionado por Advantys Ai",
     "form.perk2": "Cuatro horas, a tu ritmo",
     "form.perk3": "Certificado de finalización con tu nombre",
-    "form.perk4": "En castellano o en catalán",
+    "form.perk4": "En castellano, y pronto también en catalán",
     "form.name": "Nombre y apellidos",
     "form.email": "Email",
     "form.company": "Empresa",
@@ -156,7 +156,7 @@ window.I18N = {
     "form.sector.other": "Otro",
     "form.language": "Idioma del curso",
     "form.language.es": "Castellano",
-    "form.language.ca": "Catalán",
+    "form.language.ca": "Catalán (próximamente)",
     "form.privacy": "He leído y acepto la <a href=\"privacidad.html\" target=\"_blank\" rel=\"noopener\">política de privacidad</a>.",
     "form.news": "Quiero recibir novedades de Advantys Ai sobre formación en IA.",
     "form.submit": "Inscríbete gratis",
@@ -228,7 +228,7 @@ window.I18N = {
 
   ca: {
     "meta.title": "Curs oficial d'IA | Advantys Ai",
-    "meta.description": "Curs gratuït per aprendre a fer servir la intel·ligència artificial a la feina. Valorat en 250 € i subvencionat per Advantys Ai. 21 vídeos pràctics, en català i castellà, amb certificat.",
+    "meta.description": "Curs gratuït per aprendre a fer servir la intel·ligència artificial a la feina. Valorat en 250 € i subvencionat per Advantys Ai. 21 vídeos pràctics en castellà, amb certificat.",
 
     "nav.cta": "Inscriu-te gratis",
     "nav.lang": "Idioma",
@@ -313,8 +313,8 @@ window.I18N = {
     "cert.card.hours": "4 hores",
     "cert.card.scope.t": "Formació",
     "cert.card.scope": "Alfabetització en IA · art. 4 RIA",
-    "how.lang.t": "En català i en castellà",
-    "how.lang.d": "Tot el curs està gravat en els dos idiomes. Tries el teu quan t'inscrius.",
+    "how.lang.t": "En castellà, i aviat en català",
+    "how.lang.d": "El curs està gravat en castellà. La versió en català s'està preparant i arribarà aviat.",
 
     "audience.title": "Pensat per a qui no és tècnic",
     "audience.body": "Si fas servir el correu i el navegador, pots fer aquest curs.",
@@ -343,7 +343,7 @@ window.I18N = {
     "faq.4.q": "Quan comença?",
     "faq.4.a": "La inscripció ja és oberta. T'enviarem l'accés a la plataforma per correu tan bon punt es publiqui el primer bloc. Després, el fas al teu ritme.",
     "faq.5.q": "En quin idioma és?",
-    "faq.5.a": "En català i en castellà. Tots els vídeos estan gravats en els dos idiomes.",
+    "faq.5.a": "De moment, en castellà. La versió en català s'està preparant i arribarà aviat.",
     "faq.6.q": "Obtinc un certificat?",
     "faq.6.a": "Sí. Tothom qui acaba el curs rep un certificat de finalització d'Advantys Ai amb el seu nom, les hores de formació, el temari i la data. Per obtenir-lo cal completar els 4 blocs i superar el test de 5 preguntes de cadascun.",
     "faq.7.q": "He de posar dades de la meva empresa a la IA?",
@@ -357,7 +357,7 @@ window.I18N = {
     "form.perk1": "Gratuït: valorat en 250 € i subvencionat per Advantys Ai",
     "form.perk2": "Quatre hores, al teu ritme",
     "form.perk3": "Certificat de finalització amb el teu nom",
-    "form.perk4": "En català o en castellà",
+    "form.perk4": "En castellà, i aviat també en català",
     "form.name": "Nom i cognoms",
     "form.email": "Correu electrònic",
     "form.company": "Empresa",
@@ -378,7 +378,7 @@ window.I18N = {
     "form.sector.other": "Altres",
     "form.language": "Idioma del curs",
     "form.language.es": "Castellà",
-    "form.language.ca": "Català",
+    "form.language.ca": "Català (properament)",
     "form.privacy": "He llegit i accepto la <a href=\"privacidad.html?lang=ca\" target=\"_blank\" rel=\"noopener\">política de privacitat</a>.",
     "form.news": "Vull rebre novetats d'Advantys Ai sobre formació en IA.",
     "form.submit": "Inscriu-te gratis",

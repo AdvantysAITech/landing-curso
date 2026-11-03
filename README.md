@@ -33,7 +33,8 @@ El formulario envía a `/api/inscripcion` (archivo `api/inscripcion.js`), que re
 `nombre, email, empresa, perfil, sector, idioma_curso, acepta_privacidad, acepta_novedades, idioma_web, origen, fecha`
 
 ## Idioma
-Selector ES/CA en la cabecera. También por enlace: `?lang=ca`.
+De momento la web y el curso solo están en castellano. El botón CA de la cabecera está atenuado y muestra «Pròximament en català»; `?lang=ca` también abre la web en castellano.
+Para activar el catalán cuando esté listo: añade `"ca"` a `CONFIG.idiomasDisponibles` (`main.js`) y a `DISPONIBLES` (`legal.js`), quita `aria-disabled` y `data-soon` del botón CA (`index.html` y páginas legales), activa la opción Catalán del formulario y revisa los textos que dicen «pronto en catalán» en `i18n.js`.
 
 ## Origen de la visita
 Los enlaces con `?origen=libro` (QR del libro «Vende más y trabaja menos») marcan la inscripción con la etiqueta `origen-libro` y el origen `libro-vende-mas-y-trabaja-menos`. El origen se recuerda durante la sesión. Los orígenes admitidos están en `CONFIG.origenesPorEnlace` (`main.js`) y en `ORIGENES` (`api/inscripcion.js`); cualquier otro valor se ignora.

@@ -17,7 +17,10 @@
     origen: "landing-curso-ia-ccandorra",
     // Orígenes admitidos por enlace (?origen=...). Ej.: los QR del libro llegan con ?origen=libro
     origenesPorEnlace: ["libro"],
-    idiomaPorDefecto: "es"
+    idiomaPorDefecto: "es",
+    // Idiomas que ya se pueden elegir. El catalán está en preparación: para activarlo,
+    // añade "ca" aquí y quita aria-disabled del botón CA (index.html y páginas legales).
+    idiomasDisponibles: ["es"]
   };
 
   var I18N = window.I18N;
@@ -54,6 +57,10 @@
 
   /* ---------------- Idioma ---------------- */
   function detectLang() {
+    var lang = detectLangRaw();
+    return CONFIG.idiomasDisponibles.indexOf(lang) > -1 ? lang : CONFIG.idiomaPorDefecto;
+  }
+  function detectLangRaw() {
     var param = new URLSearchParams(window.location.search).get("lang");
     if (LANGS.indexOf(param) > -1) return param;
     var saved = storageGet("curso-ia-lang");
@@ -109,12 +116,20 @@
     }
   }
 
+  // Aviso «Pròximament en català» al tocar un idioma que aún no está disponible
+  function showSoon(btn) {
+    btn.classList.add("is-showing");
+    window.clearTimeout(btn._soonTimer);
+    btn._soonTimer = window.setTimeout(function () { btn.classList.remove("is-showing"); }, 2600);
+  }
+
   var mainEl = document.querySelector("main");
   var switchTimer = null;
 
   document.querySelectorAll(".lang-btn").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var lang = btn.getAttribute("data-lang");
+      if (btn.getAttribute("aria-disabled") === "true") { showSoon(btn); return; }
       if (lang === state.lang) return;
       if (reduceMotion.matches || !mainEl) { applyLang(lang); return; }
       // Fundido breve: baja la opacidad, cambia los textos y vuelve

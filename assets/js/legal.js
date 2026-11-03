@@ -5,11 +5,17 @@
 (function () {
   "use strict";
   var LANGS = ["es", "ca"];
+  // El catalán está en preparación: mientras no esté aquí, las páginas se muestran en castellano
+  var DISPONIBLES = ["es"];
 
   function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* sin almacenamiento */ } }
 
   function detect() {
+    var l = detectRaw();
+    return DISPONIBLES.indexOf(l) > -1 ? l : "es";
+  }
+  function detectRaw() {
     var p = new URLSearchParams(location.search).get("lang");
     if (LANGS.indexOf(p) > -1) return p;
     var s = get("curso-ia-lang");
@@ -57,7 +63,15 @@
   }
 
   document.querySelectorAll(".lang-btn").forEach(function (b) {
-    b.addEventListener("click", function () { apply(b.getAttribute("data-lang"), true); });
+    b.addEventListener("click", function () {
+      if (b.getAttribute("aria-disabled") === "true") {
+        b.classList.add("is-showing");
+        clearTimeout(b._soonTimer);
+        b._soonTimer = setTimeout(function () { b.classList.remove("is-showing"); }, 2600);
+        return;
+      }
+      apply(b.getAttribute("data-lang"), true);
+    });
   });
 
   apply(detect(), false);

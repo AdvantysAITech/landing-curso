@@ -296,6 +296,32 @@ button, [role="tab"], .btn, .lang-btn {
   transition: color 200ms ease;
 }
 .lang-btn[aria-pressed="true"] { color: var(--ink); }
+/* Idioma aún no disponible: atenuado y con aviso al pasar el ratón o tocarlo */
+.lang-btn[aria-disabled="true"] { color: rgba(22, 22, 26, 0.32); cursor: default; }
+.lang-btn[data-soon]::after {
+  content: attr(data-soon);
+  position: absolute;
+  top: calc(100% + 10px);
+  right: -4px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: var(--shadow-soft);
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms var(--ease-out);
+  z-index: 5;
+}
+.lang-btn[data-soon].is-showing::after,
+.lang-btn[data-soon]:focus-visible::after { opacity: 1; transform: none; }
+@media (hover: hover) and (pointer: fine) {
+  .lang-btn[data-soon]:hover::after { opacity: 1; transform: none; }
+}
 
 /* ---------- Portada ---------- */
 /* Titular centrado arriba y, debajo, el vídeo grande a caballo entre el blanco y una franja oscura. */
@@ -1198,7 +1224,8 @@ button, [role="tab"], .btn, .lang-btn {
   font-size: 0.9375rem;
   box-shadow: inset 0 0 0 1px var(--line);
 }
-.lang-mark span:last-child { background: var(--ink); color: #fff; box-shadow: none; }
+.lang-mark span:first-child { background: var(--ink); color: #fff; box-shadow: none; }
+.lang-mark span.is-soon { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line-strong); }
 
 /* ---------- Para quién es ---------- */
 .audience { padding-block: var(--section-y); background: var(--tint); }
@@ -1430,6 +1457,7 @@ button, [role="tab"], .btn, .lang-btn {
   cursor: pointer;
   transition: box-shadow 160ms ease, background-color 160ms ease;
 }
+.radio:has(input:disabled) { cursor: not-allowed; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line); }
 .radio input {
   width: 18px;
   height: 18px;
