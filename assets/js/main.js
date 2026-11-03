@@ -494,7 +494,7 @@
   }
 
   /* ---------------- Vídeo de presentación ---------------- */
-  // Reproductor propio sobre un MP4 en 1080p: sin pausa ni barra para avanzar o retroceder.
+  // Reproductor propio sobre un MP4 en 1080p: se pausa al tocar el vídeo, sin barra para avanzar o retroceder.
   // El vídeo no se descarga hasta que el visitante pulsa el play.
   var player = document.querySelector("[data-player]");
   if (player && player.getAttribute("data-video-src")) initPlayer(player);
@@ -505,6 +505,9 @@
     var poster = root.querySelector("[data-player-poster]");
     var intro = root.querySelector("[data-player-intro]");
     var startBtn = root.querySelector("[data-player-play]");
+    var startLabel = root.querySelector("[data-player-label]");
+    var shield = root.querySelector("[data-player-shield]");
+    var userPaused = false;
     var endBox = root.querySelector("[data-player-end]");
     var replayBtn = root.querySelector("[data-player-replay]");
     var bar = root.querySelector("[data-player-bar]");
@@ -516,11 +519,15 @@
 
     if (fsBtn && (document.fullscreenEnabled || document.webkitFullscreenEnabled)) fsBtn.hidden = false;
 
-    // Estados: idle (portada), loading, playing, blocked (el navegador no dejó arrancar), ended
+    // Estados: idle (portada), loading, playing, paused, blocked (el navegador no dejó arrancar), ended
     function setState(st) {
       root.setAttribute("data-state", st);
-      if (poster) poster.hidden = st === "playing";
-      if (bar) bar.hidden = st !== "playing";
+      if (poster) poster.hidden = st === "playing" || st === "paused";
+      if (bar) bar.hidden = !(st === "playing" || st === "paused");
+      if (startLabel) {
+        startLabel.setAttribute("data-i18n", st === "paused" ? "player.resume" : "player.watch");
+        startLabel.innerHTML = t(startLabel.getAttribute("data-i18n"));
+      }
       if (endBox) endBox.hidden = st !== "ended";
       if (intro) intro.hidden = st === "ended";
       if (st === "playing") tick(); else if (raf) { cancelAnimationFrame(raf); raf = null; }
@@ -536,7 +543,8 @@
         video.preload = "auto";
         video.src = src;
       }
-      setState("loading");
+      userPaused = false;
+      setState(video.currentTime > 0 && !video.ended ? "playing" : "loading");
       var pr = video.play();
       if (pr && pr.catch) pr.catch(function () { setState("blocked"); });
     }
@@ -544,15 +552,17 @@
     video.addEventListener("playing", function () { root.removeAttribute("data-buffering"); setState("playing"); });
     video.addEventListener("waiting", function () { root.setAttribute("data-buffering", ""); });
     video.addEventListener("canplay", function () { root.removeAttribute("data-buffering"); });
-    // Nadie puede pausar: si el navegador lo para (por ejemplo, al volver a la pestaña), sigue
+    // Solo se pausa al tocar el vídeo. Si lo para el navegador (por ejemplo, al cambiar de pestaña), sigue
     video.addEventListener("pause", function () {
-      if (root.getAttribute("data-state") === "playing" && !video.ended) {
+      if (video.ended) return;
+      if (userPaused) { setState("paused"); return; }
+      if (root.getAttribute("data-state") === "playing") {
         var pr = video.play();
         if (pr && pr.catch) pr.catch(function () { setState("blocked"); });
       }
     });
     document.addEventListener("visibilitychange", function () {
-      if (!document.hidden && root.getAttribute("data-state") === "playing" && video.paused) video.play();
+      if (!document.hidden && !userPaused && root.getAttribute("data-state") === "playing" && video.paused) video.play();
     });
     video.addEventListener("ended", function () {
       if (progress) progress.style.transform = "scaleX(1)";
@@ -562,6 +572,11 @@
     video.addEventListener("error", function () { setState("blocked"); });
 
     startBtn.addEventListener("click", start);
+    if (shield) shield.addEventListener("click", function () {
+      if (root.getAttribute("data-state") !== "playing") return;
+      userPaused = true;
+      video.pause();
+    });
     if (replayBtn) replayBtn.addEventListener("click", function () {
       video.currentTime = 0;
       start();

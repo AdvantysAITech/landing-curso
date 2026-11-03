@@ -71,7 +71,7 @@
               Vídeo de presentación de Alex (MP4 1080p). Para cambiarlo, pon el enlace del archivo nuevo
               en data-video-src y su duración en hero.duration (i18n.js).
               La imagen de portada es assets/img/hero-poster-mirada.jpg.
-              El vídeo no se descarga hasta que el visitante pulsa el play. Sin pausa ni controles de avance.
+              El vídeo no se descarga hasta que el visitante pulsa el play. Se pausa al tocarlo; sin controles de avance.
             -->
             <div class="hero-player" data-player data-video-src="https://assets.cdn.filesafe.space/tT0GAvtx8iOs64cDrzg2/media/6aea108b3fe7ef7efa4015ab.mp4" data-state="idle" data-cover="frase">
               <img class="player-poster" src="assets/img/hero-poster-mirada.jpg" width="1600" height="900" data-player-poster
@@ -82,8 +82,8 @@
               </div>
               <span class="player-spinner" aria-hidden="true"></span>
 
-              <!-- Capa sobre el vídeo: no deja pausar ni mover el vídeo -->
-              <div class="player-shield" aria-hidden="true"></div>
+              <!-- Capa sobre el vídeo: al tocarla se pausa o se reanuda; no deja mover el vídeo -->
+              <div class="player-shield" data-player-shield aria-hidden="true"></div>
 
               <div class="player-cover" data-player-cover>
                 <div class="player-intro" data-player-intro>
@@ -91,7 +91,7 @@
                   <button class="player-start" type="button" data-player-play data-i18n-attr="aria-label:hero.play" aria-label="Ver el vídeo de presentación">
                     <span class="player-start-icon" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
                     <span class="player-start-text">
-                      <span class="player-start-label" data-i18n="player.watch">Ver el vídeo</span>
+                      <span class="player-start-label" data-player-label data-i18n="player.watch">Ver el vídeo</span>
                       <span class="player-start-time" data-i18n="hero.duration">2 min con Alex Ruiz</span>
                     </span>
                   </button>
