@@ -28,7 +28,8 @@ const IDIOMA = { ca: "Catalán", es: "Castellano" };
 
 // Orígenes que puede declarar la web. Cualquier otro valor se ignora.
 const ORIGENES = {
-  libro: { origen: "libro-vende-mas-y-trabaja-menos", tag: "origen-libro" }
+  libro: { origen: "libro-vende-mas-y-trabaja-menos", tag: "origen-libro" },
+  web: { origen: "web-advantys", tag: "origen-web-advantys" }
 };
 const ORIGEN_POR_DEFECTO = { origen: "landing-curso-ia-ccandorra", tag: "origen-landing-curso" };
 
