@@ -570,7 +570,7 @@
           videoId: ytId,
           playerVars: {
             autoplay: 1, controls: 0, disablekb: 1, fs: 0, rel: 0, modestbranding: 1,
-            playsinline: 1, iv_load_policy: 3, cc_load_policy: 0, vq: "hd1080",
+            playsinline: 1, iv_load_policy: 3, cc_load_policy: 0, vq: "hd1080", start: 0,
             hl: document.documentElement.lang === "ca" ? "ca" : "es",
             origin: window.location.origin
           },
@@ -580,6 +580,8 @@
               f.setAttribute("title", (poster && poster.getAttribute("alt")) || "Vídeo");
               f.setAttribute("tabindex", "-1");
               bestQuality();
+              // Siempre desde el principio: YouTube a veces retoma donde lo dejó el visitante
+              e.target.seekTo(0, true);
               e.target.playVideo();
               // Si el navegador no deja arrancar solo (algunos móviles), se vuelve a mostrar el play
               startWatch = window.setTimeout(function () {
