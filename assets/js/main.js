@@ -606,7 +606,9 @@
 
     startBtn.addEventListener("click", play);
     if (surface) surface.addEventListener("click", pause);
-    if (pauseBtn) pauseBtn.addEventListener("click", pause);
+    if (pauseBtn) pauseBtn.addEventListener("click", function () {
+      if (root.getAttribute("data-state") === "playing") pause(); else play();
+    });
     if (replayBtn) replayBtn.addEventListener("click", function () {
       if (!yt) return;
       yt.seekTo(0, true);

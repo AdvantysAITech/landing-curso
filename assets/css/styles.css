@@ -582,7 +582,10 @@ button, [role="tab"], .btn, .lang-btn {
 @media (hover: hover) and (pointer: fine) {
   .player-ctl:hover { background: rgba(255, 255, 255, 0.14); }
 }
-.player-ctl .ico-muted { display: none; }
+.player-ctl .ico-muted,
+.player-ctl .ico-play { display: none; }
+.hero-player[data-state="paused"] .player-ctl .ico-pause { display: none; }
+.hero-player[data-state="paused"] .player-ctl .ico-play { display: block; }
 .player-ctl[aria-pressed="true"] .ico-muted { display: block; }
 .player-ctl[aria-pressed="true"] .ico-sound { display: none; }
 .hero-player:fullscreen { border-radius: 0; }
