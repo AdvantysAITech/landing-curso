@@ -472,17 +472,28 @@ button, [role="tab"], .btn, .lang-btn {
   display: grid;
   justify-items: start;
   gap: clamp(18px, 2.4vw, 28px);
-  max-width: 34%;
+  max-width: var(--intro-w, 46%);
   margin-left: 6%;
 }
 .player-intro[hidden] { display: none; }
 .player-hook {
-  font-size: clamp(1.5rem, 2.7vw, 2.375rem);
+  font-size: clamp(1.625rem, 3vw, 2.625rem);
   line-height: 1.1;
   letter-spacing: -0.035em;
   font-weight: 600;
   color: #fff;
   text-wrap: balance;
+}
+/* Portada solo con la frase: la frase es la protagonista */
+.hero-player[data-cover="frase"] .player-cover { justify-items: center; }
+.hero-player[data-cover="frase"] .player-intro { max-width: 80%; margin-left: 0; justify-items: center; text-align: center; }
+.hero-player[data-cover="frase"] .player-hook { font-size: clamp(2rem, 4.6vw, 4.125rem); line-height: 1.04; letter-spacing: -0.045em; }
+.player-hook-accent {
+  display: block;
+  background: linear-gradient(100deg, #ff6a4d 0%, #ffb08a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .player-start {
@@ -1595,6 +1606,9 @@ main.is-switching { opacity: 0.4; transition-duration: 120ms; }
   .hero-player[data-state="idle"] .player-cover,
   .hero-player[data-state="blocked"] .player-cover { align-items: end; }
   .player-intro { max-width: none; margin: 0 0 12px; justify-self: center; }
+  .hero-player[data-cover="frase"] .player-cover { align-items: center; background: none; }
+  .hero-player[data-cover="frase"] .player-intro { max-width: 92%; margin: 0; gap: 14px; }
+  .hero-player[data-cover="frase"] .player-hook { display: block; font-size: 1.375rem; }
   .hero-player[data-state="idle"] .player-cover,
   .hero-player[data-state="blocked"] .player-cover { background: linear-gradient(180deg, rgba(16, 12, 12, 0) 45%, rgba(16, 12, 12, 0.6) 100%); }
   .hero-media { padding: 5px; border-radius: 22px; }
