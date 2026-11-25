@@ -32,6 +32,9 @@ const ORIGENES = {
 };
 const ORIGEN_POR_DEFECTO = { origen: "landing-curso-ia-ccandorra", tag: "origen-landing-curso" };
 
+// Entidades colaboradoras (asociaciones). La misma lista que usa la web.
+const COLABORADORES = require("../assets/js/colaboradores.js");
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function clean(v, max) {
@@ -81,7 +84,16 @@ module.exports = async function handler(req, res) {
     return res.status(422).json({ ok: false, error: "invalid" });
   }
 
-  const procedencia = ORIGENES[clean(body.origen, 40).toLowerCase()] || ORIGEN_POR_DEFECTO;
+  let procedencia = ORIGENES[clean(body.origen, 40).toLowerCase()] || ORIGEN_POR_DEFECTO;
+
+  // Si viene de la landing de una asociación, la inscripción queda marcada con ella
+  const claveColab = clean(body.colaborador, 60).toLowerCase();
+  const colab = claveColab && COLABORADORES[claveColab] && COLABORADORES[claveColab].activo !== false
+    ? COLABORADORES[claveColab]
+    : null;
+  if (colab) {
+    procedencia = { origen: "asociacion-" + colab.clave, tag: "origen-asociacion" };
+  }
 
   const name = splitName(nombre);
   const hoy = new Date().toISOString().slice(0, 10);
@@ -90,6 +102,7 @@ module.exports = async function handler(req, res) {
   // El idioma elegido decide el email de bienvenida (catalán o castellano) en el Sistema Advantys
   const tags = ["curso-ia-inscrito", "curso-ia-" + idiomaElegido, procedencia.tag];
   if (novedades) tags.push("curso-ia-novedades");
+  if (colab) tags.push("asociacion-" + colab.clave);
 
   const payload = {
     first_name: name.first,
@@ -105,7 +118,8 @@ module.exports = async function handler(req, res) {
     acepta_novedades: novedades ? "Sí" : "No",
     tags: tags.join(","),
     idioma_web: clean(body.idioma_web, 5),
-    origen: procedencia.origen
+    origen: procedencia.origen,
+    asociacion: colab ? colab.nombre : ""
   };
 
   try {

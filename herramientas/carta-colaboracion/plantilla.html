@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Carta de colaboración · Advantys Ai</title>
+<style>
+@font-face{font-family:P;src:url(poppins-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:P;src:url(poppins-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:P;src:url(poppins-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}
+@page{size:A4;margin:0}
+:root{--rojo:#fe3633;--naranja:#fe7d49;--grad:linear-gradient(100deg,#fe3633,#fe7d49);--tinta:#020202;--gris:#5d6470;--suave:#8a909a;--banda:#020202;--linea:#e7e8eb;--rosa:#fff1ee}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:P,sans-serif;color:var(--tinta);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+.page:last-child{page-break-after:auto}
+
+/* Portada */
+.cv .net{position:absolute;inset:0;width:100%;height:100%}
+.cv .robot{position:absolute;right:-330px;top:30px;width:1020px}
+.cv .fade{position:absolute;left:0;bottom:150px;width:640px;height:520px;background:linear-gradient(90deg,#fff 55%,rgba(255,255,255,0) 100%);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 40%);mask-image:linear-gradient(180deg,transparent 0,#000 40%)}
+.cv .logo{position:absolute;left:54px;top:48px;height:34px}
+.cv .tit{position:absolute;left:54px;top:640px;width:560px}
+.cv .kick{display:inline-block;font-size:13px;font-weight:600;color:var(--rojo);background:var(--rosa);border-radius:99px;padding:6px 14px;margin-bottom:18px}
+.cv h1{font-size:56px;line-height:1.02;font-weight:500;color:#020202;letter-spacing:-1.2px;display:flex;align-items:center;gap:18px}
+.cv h1 .chip{width:38px;height:38px;border-radius:50%;background:var(--grad);display:inline-flex;align-items:center;justify-content:center;flex:none}
+.cv h2{margin-top:12px;font-size:25px;line-height:1.22;font-weight:700;color:var(--rojo);max-width:470px}
+.cv .meta{position:absolute;left:54px;right:54px;top:892px;display:flex;gap:40px}
+.cv .meta .l{font-size:11px;color:var(--suave);text-transform:none;margin-bottom:3px}
+.cv .meta .v{font-size:14px;font-weight:600;color:var(--tinta)}
+.cv .banda{position:absolute;left:0;right:0;bottom:0;height:150px;background:var(--banda);display:flex;align-items:center;padding:0 70px;gap:34px}
+.cv .banda p{font-size:24px;line-height:1.3;color:#fff;font-weight:400;width:400px}
+.cv .banda p b{color:var(--naranja);font-weight:700}
+.cv .banda ul{white-space:nowrap;list-style:none;border-left:3px solid var(--naranja);padding-left:14px;font-size:13.5px;line-height:1.75;color:#e6e8ec}
+
+/* Interiores */
+.in{padding:56px 62px 0}
+.in .marca{position:absolute;right:-470px;top:300px;width:1500px;transform:rotate(-55deg);opacity:.07;pointer-events:none}
+.hd{display:flex;justify-content:flex-end}
+.hd img{height:24px}
+.ti{margin-top:22px;font-size:34px;font-weight:400;color:#020202;padding-bottom:14px;border-bottom:2px solid var(--naranja)}
+.lead{margin-top:20px;font-size:14.5px;line-height:1.6;color:var(--gris)}
+.lead b{color:var(--tinta)}
+.sec{margin-top:26px;font-size:15px;font-weight:700;color:var(--tinta);display:flex;align-items:center;gap:10px}
+.sec .n{font-size:11px;font-weight:700;color:#fff;background:var(--grad);border-radius:6px;padding:3px 7px}
+.partes{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.parte{border:1px solid var(--linea);border-radius:12px;padding:14px 16px;font-size:12.5px;line-height:1.55;color:var(--gris);background:#fff}
+.parte .l{font-size:10.5px;font-weight:600;color:var(--rojo);margin-bottom:4px}
+.parte b{color:var(--tinta);font-size:13.5px}
+.blank{display:inline-block;border-bottom:1px solid #b9bdc4;min-width:150px;height:14px;vertical-align:bottom}
+.glance{margin-top:22px;background:var(--banda);border-radius:14px;padding:20px 22px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;color:#fff}
+.glance .big{font-size:26px;font-weight:700;line-height:1.1;color:#fff}
+.glance .big.or{color:var(--naranja)}
+.glance .s{font-size:11.5px;color:#cfd3da;margin-top:4px;line-height:1.35}
+.duo{margin-top:16px;display:grid;grid-template-columns:1.25fr 1fr;gap:14px}
+.card{border-radius:12px;padding:16px 18px;background:#fff;border:1px solid var(--linea)}
+.card.rosa{background:#fff;border-color:var(--naranja)}
+.card h3{font-size:14px;font-weight:700;margin-bottom:8px;color:var(--tinta)}
+.card ol{padding-left:0;list-style:none;counter-reset:c}
+.card li{counter-increment:c;position:relative;padding-left:26px;font-size:12.3px;line-height:1.5;color:var(--gris);margin-bottom:7px}
+.card li::before{content:counter(c);position:absolute;left:0;top:1px;width:18px;height:18px;border-radius:50%;background:var(--grad);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.card li b{color:var(--tinta);font-weight:600}
+.clauses{margin-top:18px;display:flex;flex-direction:column;gap:12px}
+.cl{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:start}
+.cl .num{font-size:20px;font-weight:700;color:var(--rojo);line-height:1.2}
+.pasos{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.paso{background:#fff;border:1px solid var(--naranja);border-radius:12px;padding:14px 16px}
+.paso .k{font-size:11px;font-weight:700;color:var(--rojo)}
+.paso p{font-size:12.3px;line-height:1.5;color:var(--tinta);margin-top:4px}
+.cl p{font-size:12.6px;line-height:1.58;color:var(--gris)}
+.cl p b{color:var(--tinta);font-weight:600}
+.firmas{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.firma{border:1px solid var(--linea);border-radius:12px;padding:16px 18px;height:228px;position:relative}
+.firma .l{font-size:10.5px;font-weight:600;color:var(--rojo)}
+.firma .q{font-size:13.5px;font-weight:600;margin-top:2px}
+.firma .row{position:absolute;left:18px;right:18px;font-size:11px;color:var(--suave);border-top:1px solid #c9ccd2;padding-top:5px}
+.ft{position:absolute;left:62px;right:62px;bottom:30px;display:flex;justify-content:space-between;font-size:10px;color:var(--suave);border-top:1px solid var(--linea);padding-top:10px}
+.ft b{color:var(--rojo);font-weight:600}
+.contacto{position:absolute;left:0;right:0;bottom:0;height:64px;background:var(--banda);display:flex;align-items:center;justify-content:center;gap:28px;color:#fff;font-size:12.5px}
+.contacto span{border-left:2px solid var(--naranja);padding-left:10px}
+.colab{display:flex;align-items:center;gap:14px;margin-top:20px}
+.colab img{height:44px}
+.colab .x{color:var(--suave);font-size:18px}
+
+/* Portada de la plantilla de propuestas */
+.cv2 .fondo{position:absolute;inset:0;width:100%;height:100%}
+.cv2 h1{position:absolute;left:36px;top:784px;font-size:46px;line-height:1;font-weight:500;color:#3d4654;letter-spacing:-.5px;white-space:nowrap}
+.cv2 h2{position:absolute;left:34px;top:846px;width:420px;font-size:26px;line-height:1.2;font-weight:700;color:#fe6041}
+.cv2 .quien{position:absolute;left:35px;top:918px;font-size:12px;color:#5d6470}
+.cv2 .bt{position:absolute;left:104px;top:1004px;font-size:24px;line-height:1.3;color:#fff;font-weight:400}
+.cv2 .bt b{color:#fe6041;font-weight:700}
+.cv2 .bl{position:absolute;left:556px;top:1007px;list-style:none;font-size:13.5px;line-height:1.72;color:#fff}
+.firma .sig{position:absolute;left:46px;bottom:86px;height:80px;width:auto}
+.firma .val{position:absolute;left:18px;font-size:12.5px;font-weight:600;color:var(--tinta)}
+</style></head>
+<body>
+
+<!-- 1 PORTADA (portada de la plantilla de propuestas de Advantys) -->
+<section class="page cv2">
+  <img class="fondo" src="portada.jpg" alt="">
+  <h1>Colaboración</h1>
+  <h2>Curso de IA gratis para los {{SOCIOS}} de {{CORTO}}</h2>
+  <p class="quien">Advantys Ai SL y {{CORTO}} · {{FECHA}}</p>
+  <div class="bt"><b>Formación en IA</b> para tus {{SOCIOS}}<br>y sus equipos, sin coste</div>
+  <ul class="bl"><li>Curso online</li><li>Certificado</li><li>Reglamento europeo de IA</li></ul>
+</section>
+
+<!-- 2 EL ACUERDO -->
+<section class="page in">
+  <img class="marca" src="marca.png" alt="">
+  <div class="hd"><img src="logo.png" alt="Advantys Ai"></div>
+  <h1 class="ti">El acuerdo</h1>
+  <p class="lead">Advantys Ai y <b>{{NOMBRE}}</b> colaboran para ofrecer gratis a los {{SOCIOS}} de la Entidad, y a los trabajadores de sus empresas, el curso online de inteligencia artificial para principiantes de Advantys Ai. No tiene ningún coste para la Entidad ni para los alumnos.</p>
+  <div class="colab"><img src="logo.png" alt="Advantys Ai" style="height:26px"><span class="x">×</span>{{LOGO_COLAB}}</div>
+
+  <div class="sec"><span class="n">01</span>Las partes</div>
+  <div class="partes">
+    <div class="parte"><div class="l">Advantys Ai</div><b>Advantys Ai SL</b><br>Representada por Jacob Ruiz, CEO.</div>
+    <div class="parte"><div class="l">La Entidad</div><b>{{NOMBRE}}</b><br>NIF <span class="blank" style="min-width:120px"></span><br>Representada por <span class="blank" style="min-width:170px"></span><br>en calidad de <span class="blank" style="min-width:190px"></span></div>
+  </div>
+
+  <div class="glance">
+    <div><div class="big or">0 €</div><div class="s">Coste para la Entidad y para los alumnos</div></div>
+    <div><div class="big">250 €</div><div class="s">Valor del curso por alumno</div></div>
+    <div><div class="big">Sin límite</div><div class="s">De alumnos: {{SOCIOS}} y sus trabajadores</div></div>
+    <div><div class="big">4 h</div><div class="s">21 vídeos prácticos y certificado</div></div>
+  </div>
+
+  <div class="sec"><span class="n">02</span>Qué aporta cada parte</div>
+  <div class="duo">
+    <div class="card rosa"><h3>Advantys Ai</h3><ol>
+      <li><b>Acceso gratuito al curso</b> para todos los {{SOCIOS}} de la Entidad y sus trabajadores, sin límite de alumnos.</li>
+      <li><b>Una página de inscripción propia</b>, con el nombre y el logo de la Entidad.</li>
+      <li><b>El material de difusión listo para usar:</b> email para los {{SOCIOS}}, publicación para redes, texto para la web y banner.</li>
+      <li><b>Certificado de finalización</b> para cada alumno que complete el curso y supere sus tests.</li>
+      <li><b>Una charla de presentación</b> del curso para los {{SOCIOS}}, online o presencial, si la Entidad la pide.</li>
+    </ol></div>
+    <div class="card"><h3>La Entidad</h3><ol>
+      <li><b>Comunicar el curso</b> a sus {{SOCIOS}} por los canales que elija (email, redes, web o boletín), con el material de difusión.</li>
+      <li><b>Permitir que Advantys Ai la cite</b> como entidad colaboradora del curso.</li>
+    </ol></div>
+  </div>
+  <div class="ft"><span><b>advantys Ai</b> · Carta de colaboración</span><span>02 / 03</span></div>
+</section>
+
+<!-- 3 CONDICIONES Y FIRMAS -->
+<section class="page in">
+  <img class="marca" src="marca.png" alt="">
+  <div class="hd"><img src="logo.png" alt="Advantys Ai"></div>
+  <h1 class="ti">Condiciones y firma</h1>
+  <div class="clauses">
+    <div class="cl"><div class="num">03</div><p><b>Datos personales.</b> La Entidad no cede datos de sus {{SOCIOS}} a Advantys Ai. Cada alumno se inscribe directamente en la página del curso y acepta la política de privacidad de Advantys Ai, que trata sus datos como responsable, solo para darle acceso al curso y, si el alumno lo acepta, para enviarle novedades. Advantys Ai podrá informar a la Entidad del número de inscritos y de alumnos que terminan el curso, sin datos personales.</p></div>
+    <div class="cl"><div class="num">04</div><p><b>Nombres y logos.</b> Cada parte autoriza a la otra a usar su nombre y su logo solo para dar a conocer este curso. La autorización termina con la colaboración.</p></div>
+    <div class="cl"><div class="num">05</div><p><b>Sin coste ni exclusividad.</b> La colaboración no supone ningún pago entre las partes ni exclusividad para ninguna de ellas.</p></div>
+    <div class="cl"><div class="num">06</div><p><b>Duración.</b> La colaboración empieza con la firma de esta carta y no tiene permanencia: cualquiera de las partes puede terminarla en cualquier momento avisando a la otra por email. Los alumnos ya inscritos conservan su acceso al curso.</p></div>
+    <div class="cl"><div class="num">07</div><p><b>Contacto.</b> Para todo lo relativo a este acuerdo, Advantys Ai atiende en contacto@advantys.ai.</p></div>
+  </div>
+  <div class="sec"><span class="n">08</span>Cómo arrancamos</div>
+  <div class="pasos">
+    <div class="paso"><div class="k">Paso 1 · Al firmar</div><p>Nos enviáis vuestro logo y el nombre de la persona que hará el envío a los {{SOCIOS}}.</p></div>
+    <div class="paso"><div class="k">Paso 2 · En 48 horas</div><p>Tenéis vuestra página de inscripción y todo el material de difusión, listo para usar.</p></div>
+    <div class="paso"><div class="k">Paso 3 · Lanzamiento</div><p>Lo comunicáis a vuestros {{SOCIOS}} y cada persona se inscribe y empieza el curso.</p></div>
+  </div>
+  <div class="firmas">
+    <div class="firma"><div class="l">Por Advantys Ai SL</div><div class="q">Jacob Ruiz, CEO</div>
+      <img class="sig" src="firma.png" alt="Firma de Jacob Ruiz">
+      <div class="row" style="bottom:66px">Firma</div><div class="val" style="bottom:38px">{{FECHA}}</div><div class="row" style="bottom:18px">Fecha</div></div>
+    <div class="firma"><div class="l">Por la Entidad</div><div class="q">{{CORTO}}</div>
+      <div class="row" style="bottom:110px">Nombre y cargo</div><div class="row" style="bottom:66px">Firma</div><div class="row" style="bottom:18px">Fecha</div></div>
+  </div>
+  <div class="ft" style="bottom:92px"><span><b>advantys Ai</b> · Carta de colaboración</span><span>03 / 03</span></div>
+  <div class="contacto"><span>www.advantys.ai</span><span>contacto@advantys.ai</span></div>
+</section>
+</body></html>

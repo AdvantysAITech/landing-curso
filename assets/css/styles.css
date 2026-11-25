@@ -1720,3 +1720,26 @@ main.is-switching { opacity: 0.4; transition-duration: 120ms; }
   .footer-inner { grid-template-columns: minmax(0, 1fr); }
 }
 
+
+/* ---------- Entidad colaboradora (landing de cada asociación) ---------- */
+.brand-group { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand-colab { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand-colab img { width: auto; max-width: 160px; object-fit: contain; }
+.brand-x { color: var(--muted); font-size: 1rem; line-height: 1; }
+.colab-sep { font-size: 0.875rem; color: var(--muted); }
+.colab-logo { width: auto; max-width: 260px; object-fit: contain; display: block; }
+.colab-link { display: inline-flex; }
+.colab-datos {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 4px 0 14px;
+}
+@media (max-width: 640px) {
+  .brand-colab img { max-width: 96px; }
+  .brand-group, .brand-colab { gap: 8px; }
+  .colab-logo { max-width: 200px; }
+}
+@media (max-width: 400px) {
+  .brand-colab { display: none; }
+}
