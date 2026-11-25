@@ -448,3 +448,41 @@ window.I18N = {
     ]
   }
 };
+/*
+  Textos que cambian en la landing de una entidad colaboradora (asociación, federación...).
+  Solo se usan cuando la visita entra por su subdominio o con ?colaborador=CLAVE.
+  {nombre} = nombre completo de la entidad, {corto} = siglas o nombre corto,
+  {socios} = cómo llaman a sus miembros. Todo lo demás sale de window.I18N.
+*/
+window.I18N_COLAB = {
+  es: {
+    "meta.title": "Curso de IA gratuito para los {socios} de {corto} | Advantys Ai",
+    "meta.description": "Curso gratuito para aprender a usar la inteligencia artificial en el trabajo, para los {socios} de {nombre} y sus equipos. Valorado en 250 €, con certificado.",
+    "hero.eyebrow": "Para los {socios} de {corto}",
+    "price.free": "Gratis para los {socios} de {corto}",
+    "price.note": "Gracias al acuerdo entre {corto} y Advantys Ai",
+    "colab.with": "en colaboración con",
+    "colab.datos": "Tus datos los trata Advantys Ai solo para darte acceso al curso. {corto} no recibe tus datos.",
+    "faq.1.a": "Nada. El curso está valorado en 250 €, pero gracias al acuerdo entre {corto} y Advantys Ai es gratuito para sus {socios} y para los trabajadores de sus empresas.",
+    "faq.4.a": "Ya. Al inscribirte recibes por email el acceso a la plataforma y puedes empezar con el primer bloque. Los siguientes bloques se van abriendo poco a poco. Lo haces a tu ritmo.",
+    "form.sub": "Déjanos tus datos y recibirás por email el acceso a la plataforma del curso.",
+    "form.perk1": "Gratuito para los {socios} de {corto} (valorado en 250 €)",
+    "form.ok.body": "Te hemos enviado el acceso a <strong>{email}</strong>. Si no lo ves en unos minutos, mira en la carpeta de correo no deseado.",
+    "footer.rights": "© 2026 Advantys Ai SL. Una iniciativa de Advantys Ai en colaboración con {nombre}."
+  },
+  ca: {
+    "meta.title": "Curs d'IA gratuït per als {socios} de {corto} | Advantys Ai",
+    "meta.description": "Curs gratuït per aprendre a fer servir la intel·ligència artificial a la feina, per als {socios} de {nombre} i els seus equips. Valorat en 250 €, amb certificat.",
+    "hero.eyebrow": "Per als {socios} de {corto}",
+    "price.free": "Gratis per als {socios} de {corto}",
+    "price.note": "Gràcies a l'acord entre {corto} i Advantys Ai",
+    "colab.with": "en col·laboració amb",
+    "colab.datos": "Les teves dades les tracta Advantys Ai només per donar-te accés al curs. {corto} no rep les teves dades.",
+    "faq.1.a": "Res. El curs està valorat en 250 €, però gràcies a l'acord entre {corto} i Advantys Ai és gratuït per als seus {socios} i per als treballadors de les seves empreses.",
+    "faq.4.a": "Ja. Quan t'inscrius reps per correu l'accés a la plataforma i pots començar pel primer bloc. Els blocs següents s'obren a poc a poc. El fas al teu ritme.",
+    "form.sub": "Deixa'ns les teves dades i rebràs per correu l'accés a la plataforma del curs.",
+    "form.perk1": "Gratuït per als {socios} de {corto} (valorat en 250 €)",
+    "form.ok.body": "T'hem enviat l'accés a <strong>{email}</strong>. Si no el veus d'aquí a uns minuts, mira a la carpeta de correu brossa.",
+    "footer.rights": "© 2026 Advantys Ai SL. Una iniciativa d'Advantys Ai en col·laboració amb {nombre}."
+  }
+};

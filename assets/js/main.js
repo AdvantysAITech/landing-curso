@@ -28,10 +28,94 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var state = { lang: CONFIG.idiomaPorDefecto, block: 0 };
 
+  /* ---------------- Entidad colaboradora ----------------
+     Si la visita entra por el subdominio de una asociación (colaboradores.js)
+     o con ?colaborador=CLAVE, la página muestra su logo y sus textos, y la
+     inscripción queda marcada con esa entidad. Si no, es la landing general. */
+  function detectColaborador() {
+    var lista = window.COLABORADORES || {};
+    var host = location.hostname.toLowerCase();
+    var clave = null;
+    Object.keys(lista).forEach(function (k) {
+      var c = lista[k];
+      if (c && c.activo !== false && (c.hosts || []).indexOf(host) > -1) clave = k;
+    });
+    if (!clave) {
+      var param = (new URLSearchParams(location.search).get("colaborador") || "").toLowerCase();
+      try {
+        if (param && lista[param] && lista[param].activo !== false) {
+          window.sessionStorage.setItem("curso-ia-colaborador", param);
+          clave = param;
+        } else {
+          var saved = window.sessionStorage.getItem("curso-ia-colaborador");
+          if (saved && lista[saved] && lista[saved].activo !== false) clave = saved;
+        }
+      } catch (e) {
+        if (param && lista[param] && lista[param].activo !== false) clave = param;
+      }
+    }
+    return clave ? lista[clave] : null;
+  }
+  var colaborador = detectColaborador();
+  var I18N_COLAB = window.I18N_COLAB || {};
+
+  function rellenaColab(texto) {
+    if (!colaborador || typeof texto !== "string") return texto;
+    return texto
+      .replace(/\{nombre\}/g, colaborador.nombre)
+      .replace(/\{corto\}/g, colaborador.corto || colaborador.nombre)
+      .replace(/\{socios\}/g, colaborador.socios || "socios");
+  }
+
   function t(key) {
+    if (colaborador) {
+      var dc = I18N_COLAB[state.lang] || I18N_COLAB.es || {};
+      var vc = dc[key] != null ? dc[key] : ((I18N_COLAB.es || {})[key]);
+      if (vc != null) return rellenaColab(vc);
+    }
     var dict = I18N[state.lang] || I18N.es;
     return dict[key] != null ? dict[key] : (I18N.es[key] != null ? I18N.es[key] : "");
   }
+
+  function escAttr(v) {
+    return String(v).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+  }
+
+  // Pone el logo de la entidad en la cabecera y en la franja «Una iniciativa de»
+  function pintaColaborador() {
+    if (!colaborador) return;
+    document.documentElement.classList.add("con-colaborador");
+    var alto = colaborador.alto || 36;
+    var img = '<img class="colab-logo" src="' + escAttr(colaborador.logo) + '" alt="' + escAttr(colaborador.nombre) +
+      '" style="height:' + alto + 'px" decoding="async">';
+    var logo = colaborador.web
+      ? '<a class="colab-link" href="' + escAttr(colaborador.web) + '" target="_blank" rel="noopener">' + img + "</a>"
+      : img;
+
+    var logos = document.querySelector(".partners-logos");
+    if (logos) {
+      logos.insertAdjacentHTML("beforeend",
+        '<span class="colab-sep" data-i18n="colab.with">' + t("colab.with") + "</span>" + logo);
+    }
+
+    var brand = document.querySelector(".site-header .brand");
+    if (brand) {
+      var grupo = document.createElement("div");
+      grupo.className = "brand-group";
+      brand.parentNode.insertBefore(grupo, brand);
+      grupo.appendChild(brand);
+      grupo.insertAdjacentHTML("beforeend",
+        '<span class="brand-colab" aria-hidden="true"><span class="brand-x">×</span>' +
+        '<img src="' + escAttr(colaborador.logo) + '" alt="" style="height:' + Math.round(alto * 0.75) + 'px"></span>');
+    }
+
+    var form = document.querySelector("[data-form]");
+    var submit = form && form.querySelector("[data-submit]");
+    if (submit) {
+      submit.insertAdjacentHTML("beforebegin", '<p class="colab-datos" data-i18n="colab.datos">' + t("colab.datos") + "</p>");
+    }
+  }
+  pintaColaborador();
 
   function storageGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
   function storageSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* sin almacenamiento */ } }
@@ -385,6 +469,7 @@
         acepta_novedades: fd.get("acepta_novedades") === "on",
         idioma_web: state.lang,
         origen: origenVisita,
+        colaborador: colaborador ? colaborador.clave : "",
         fecha: new Date().toISOString()
       };
 

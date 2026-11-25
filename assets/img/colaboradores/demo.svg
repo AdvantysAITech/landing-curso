@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 64" width="300" height="64" role="img" aria-label="AEPI Ejemplo">
+  <rect x="2" y="8" width="48" height="48" rx="10" fill="#1f4e79"/>
+  <path d="M12 46 L26 18 L40 46 Z" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="21" y="36" width="10" height="10" fill="#ffffff"/>
+  <text x="62" y="31" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#1f4e79">AEPI</text>
+  <text x="62" y="52" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#4a5a6a">Polígono Ejemplo</text>
+</svg>
