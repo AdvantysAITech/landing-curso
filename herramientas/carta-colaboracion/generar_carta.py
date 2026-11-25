@@ -42,6 +42,10 @@ def main():
     for k, v in {"NOMBRE": o.nombre, "CORTO": o.corto, "SOCIOS": o.socios, "FECHA": o.fecha}.items():
         t = t.replace("{{" + k + "}}", html.escape(v))
     t = t.replace("{{LOGO_COLAB}}", logo_html(o.logo))
+    # La firma de Jacob (firma.png) no está en el repositorio, que es público.
+    # Si no está junto al script, la carta sale sin firma.
+    if not (AQUI / "firma.png").exists():
+        t = t.replace('<img class="sig" src="firma.png" alt="Firma de Jacob Ruiz">', "")
     tmp = AQUI / "_carta.html"
     tmp.write_text(t, encoding="utf-8")
     asyncio.run(render(tmp, pathlib.Path(o.salida).resolve()))

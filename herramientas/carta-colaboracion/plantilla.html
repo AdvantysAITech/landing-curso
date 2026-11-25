@@ -67,7 +67,7 @@ body{font-family:P,sans-serif;color:var(--tinta);-webkit-print-color-adjust:exac
 .cl p{font-size:12.6px;line-height:1.58;color:var(--gris)}
 .cl p b{color:var(--tinta);font-weight:600}
 .firmas{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.firma{border:1px solid var(--linea);border-radius:12px;padding:16px 18px;height:205px;position:relative}
+.firma{border:1px solid var(--linea);border-radius:12px;padding:16px 18px;height:228px;position:relative}
 .firma .l{font-size:10.5px;font-weight:600;color:var(--rojo)}
 .firma .q{font-size:13.5px;font-weight:600;margin-top:2px}
 .firma .row{position:absolute;left:18px;right:18px;font-size:11px;color:var(--suave);border-top:1px solid #c9ccd2;padding-top:5px}
@@ -87,6 +87,8 @@ body{font-family:P,sans-serif;color:var(--tinta);-webkit-print-color-adjust:exac
 .cv2 .bt{position:absolute;left:104px;top:1004px;font-size:24px;line-height:1.3;color:#fff;font-weight:400}
 .cv2 .bt b{color:#fe6041;font-weight:700}
 .cv2 .bl{position:absolute;left:556px;top:1007px;list-style:none;font-size:13.5px;line-height:1.72;color:#fff}
+.firma .sig{position:absolute;left:46px;bottom:86px;height:80px;width:auto}
+.firma .val{position:absolute;left:18px;font-size:12.5px;font-weight:600;color:var(--tinta)}
 </style></head>
 <body>
 
@@ -158,9 +160,10 @@ body{font-family:P,sans-serif;color:var(--tinta);-webkit-print-color-adjust:exac
   </div>
   <div class="firmas">
     <div class="firma"><div class="l">Por Advantys Ai SL</div><div class="q">Jacob Ruiz, CEO</div>
-      <div class="row" style="bottom:56px">Firma</div><div class="row" style="bottom:18px">Fecha</div></div>
+      <img class="sig" src="firma.png" alt="Firma de Jacob Ruiz">
+      <div class="row" style="bottom:66px">Firma</div><div class="val" style="bottom:38px">{{FECHA}}</div><div class="row" style="bottom:18px">Fecha</div></div>
     <div class="firma"><div class="l">Por la Entidad</div><div class="q">{{CORTO}}</div>
-      <div class="row" style="bottom:94px">Nombre y cargo</div><div class="row" style="bottom:56px">Firma</div><div class="row" style="bottom:18px">Fecha</div></div>
+      <div class="row" style="bottom:110px">Nombre y cargo</div><div class="row" style="bottom:66px">Firma</div><div class="row" style="bottom:18px">Fecha</div></div>
   </div>
   <div class="ft" style="bottom:92px"><span><b>advantys Ai</b> · Carta de colaboración</span><span>03 / 03</span></div>
   <div class="contacto"><span>www.advantys.ai</span><span>contacto@advantys.ai</span></div>
