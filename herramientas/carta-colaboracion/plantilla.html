@@ -51,7 +51,7 @@ body{font-family:P,sans-serif;color:var(--tinta);-webkit-print-color-adjust:exac
 .glance .s{font-size:11.5px;color:#cfd3da;margin-top:4px;line-height:1.35}
 .duo{margin-top:16px;display:grid;grid-template-columns:1.25fr 1fr;gap:14px}
 .card{border-radius:12px;padding:16px 18px;background:#fff;border:1px solid var(--linea)}
-.card.rosa{background:var(--rosa);border-color:#ffd9d0}
+.card.rosa{background:#fff;border-color:var(--naranja)}
 .card h3{font-size:14px;font-weight:700;margin-bottom:8px;color:var(--tinta)}
 .card ol{padding-left:0;list-style:none;counter-reset:c}
 .card li{counter-increment:c;position:relative;padding-left:26px;font-size:12.3px;line-height:1.5;color:var(--gris);margin-bottom:7px}
@@ -61,7 +61,7 @@ body{font-family:P,sans-serif;color:var(--tinta);-webkit-print-color-adjust:exac
 .cl{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:start}
 .cl .num{font-size:20px;font-weight:700;color:var(--rojo);line-height:1.2}
 .pasos{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.paso{background:var(--rosa);border-radius:12px;padding:14px 16px}
+.paso{background:#fff;border:1px solid var(--naranja);border-radius:12px;padding:14px 16px}
 .paso .k{font-size:11px;font-weight:700;color:var(--rojo)}
 .paso p{font-size:12.3px;line-height:1.5;color:var(--tinta);margin-top:4px}
 .cl p{font-size:12.6px;line-height:1.58;color:var(--gris)}
@@ -78,38 +78,26 @@ body{font-family:P,sans-serif;color:var(--tinta);-webkit-print-color-adjust:exac
 .colab{display:flex;align-items:center;gap:14px;margin-top:20px}
 .colab img{height:44px}
 .colab .x{color:var(--suave);font-size:18px}
+
+/* Portada de la plantilla de propuestas */
+.cv2 .fondo{position:absolute;inset:0;width:100%;height:100%}
+.cv2 h1{position:absolute;left:36px;top:784px;font-size:46px;line-height:1;font-weight:500;color:#3d4654;letter-spacing:-.5px;white-space:nowrap}
+.cv2 h2{position:absolute;left:34px;top:846px;width:420px;font-size:26px;line-height:1.2;font-weight:700;color:#fe6041}
+.cv2 .quien{position:absolute;left:35px;top:918px;font-size:12px;color:#5d6470}
+.cv2 .bt{position:absolute;left:104px;top:1004px;font-size:24px;line-height:1.3;color:#fff;font-weight:400}
+.cv2 .bt b{color:#fe6041;font-weight:700}
+.cv2 .bl{position:absolute;left:556px;top:1007px;list-style:none;font-size:13.5px;line-height:1.72;color:#fff}
 </style></head>
 <body>
 
-<!-- 1 PORTADA -->
-<section class="page cv">
-  <svg class="net" viewBox="0 0 794 1123" aria-hidden="true">
-    <g stroke="#fde0dc" stroke-width="1.6" fill="none">
-      <path d="M20 250 L120 170 L270 180 L300 70 L420 40 M120 170 L60 300 L210 360 L290 300 L270 180 M210 360 L130 500 L320 520 L290 300 M60 300 L-10 420 L130 500 L90 680 M320 520 L420 440 L540 560 M320 520 L280 690 L420 790 M130 500 L280 690"/>
-    </g>
-    <g fill="#fde3df">
-      <circle cx="120" cy="170" r="14"/><circle cx="270" cy="180" r="26"/><circle cx="300" cy="70" r="10"/><circle cx="60" cy="300" r="18"/>
-      <circle cx="210" cy="360" r="16"/><circle cx="290" cy="300" r="9"/><circle cx="130" cy="500" r="11"/><circle cx="320" cy="520" r="24"/>
-      <circle cx="420" cy="440" r="12"/><circle cx="90" cy="680" r="9"/><circle cx="280" cy="690" r="10"/><circle cx="420" cy="40" r="11"/>
-    </g>
-  </svg>
-  <img class="robot" src="robot.png" alt="">
-  <div class="fade"></div>
-  <img class="logo" src="logo.png" alt="Advantys Ai">
-  <div class="tit">
-    <span class="kick">Acuerdo de colaboración formativa</span>
-    <h1>Carta de colaboración <span class="chip"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></h1>
-    <h2>Curso de IA gratuito para los {{SOCIOS}} de {{CORTO}}</h2>
-  </div>
-  <div class="meta">
-    <div><div class="l">Entre</div><div class="v">Advantys Ai SL y {{CORTO}}</div></div>
-    <div><div class="l">Fecha</div><div class="v">{{FECHA}}</div></div>
-    <div><div class="l">Presentado por</div><div class="v">Jacob Ruiz, CEO de Advantys Ai</div></div>
-  </div>
-  <div class="banda">
-    <p><b>Formación en IA</b> para tus {{SOCIOS}} y sus equipos, sin coste</p>
-    <ul><li>Curso online con certificado</li><li>Página de inscripción propia</li><li>Reglamento europeo de IA</li></ul>
-  </div>
+<!-- 1 PORTADA (portada de la plantilla de propuestas de Advantys) -->
+<section class="page cv2">
+  <img class="fondo" src="portada.jpg" alt="">
+  <h1>Colaboración</h1>
+  <h2>Curso de IA gratis para los {{SOCIOS}} de {{CORTO}}</h2>
+  <p class="quien">Advantys Ai SL y {{CORTO}} · {{FECHA}}</p>
+  <div class="bt"><b>Formación en IA</b> para tus {{SOCIOS}}<br>y sus equipos, sin coste</div>
+  <ul class="bl"><li>Curso online</li><li>Certificado</li><li>Reglamento europeo de IA</li></ul>
 </section>
 
 <!-- 2 EL ACUERDO -->
